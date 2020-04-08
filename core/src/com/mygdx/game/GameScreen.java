@@ -9,6 +9,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Tools.Assets;
+
+import static com.mygdx.game.Tools.Assets.CEgate;
 import static com.mygdx.game.Tools.Assets.Samurai;
 import static com.mygdx.game.Tools.Assets.doortouw;
 import static com.mygdx.game.Tools.Assets.townmap;
@@ -37,8 +39,6 @@ public class GameScreen implements Screen {
         renderer = new OrthogonalTiledMapRenderer(townmap);
         samX = 960 - 64;
         samY = 540 - 64;
-        dtuwX = 760;
-        dtuwY = 890;
     }
 
     @Override
@@ -53,7 +53,8 @@ public class GameScreen implements Screen {
 
         batch.begin();
             batch.draw(Samurai, samX, samY, 150, 150);
-            batch.draw(doortouw, dtuwX, dtuwY);
+            batch.draw(doortouw, 760, 890);
+            batch.draw(CEgate, 100, 960);
         batch.end();
 
     }
@@ -65,8 +66,12 @@ public class GameScreen implements Screen {
             samX = (int)touch.x;
             samY = (int)touch.y;
         }
-        if((samY > 900)){
+        if(samY > 900){
             game.setScreen(new GameScreenUW(game));
+            dispose();
+        }
+        if(samX<100){
+            game.setScreen(new GameScreenEnt(game));
             dispose();
         }
     }

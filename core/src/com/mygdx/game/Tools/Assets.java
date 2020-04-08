@@ -17,11 +17,16 @@ public class Assets {
     // дверь
     public static Texture texture_dtuw;
     public static Sprite doortouw;
+
+    public static Texture texture_CEgate;
+    public static Sprite CEgate;
     // карта орода
     public static TiledMap townmap;
     public static TmxMapLoader mapLoader;
     // карта пригорода
     public static TiledMap uverworld;
+    // карта входа в замок
+    public static TiledMap Enterance;
 
     public static void load() {
         texture_back = new Texture(Gdx.files.internal("backgrounds/MM-for-TLG.png"));
@@ -34,8 +39,12 @@ public class Assets {
         texture_dtuw = new Texture(Gdx.files.internal("dtuw.png"));
         doortouw = new Sprite(texture_dtuw);
 
+        texture_CEgate = new Texture(Gdx.files.internal("CEgate.png"));
+        CEgate = new Sprite(texture_CEgate);
+
         mapLoader = new TmxMapLoader();
         townmap = mapLoader.load("maps/town.tmx");
         uverworld = mapLoader.load("maps/uverworld.tmx");
+        Enterance = mapLoader.load("maps/CastleEntry.tmx");
     }
 }

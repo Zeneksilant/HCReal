@@ -8,12 +8,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 
+import static com.mygdx.game.Tools.Assets.CEgate;
+import static com.mygdx.game.Tools.Assets.Enterance;
 import static com.mygdx.game.Tools.Assets.Samurai;
-import static com.mygdx.game.Tools.Assets.doortouw;
-import static com.mygdx.game.Tools.Assets.townmap;
 import static com.mygdx.game.Tools.Assets.uverworld;
 
-public class GameScreenUW implements Screen {
+public class GameScreenEnt implements Screen {
     HighCastle game;
     OrthographicCamera camera;
     SpriteBatch batch;
@@ -22,14 +22,14 @@ public class GameScreenUW implements Screen {
     int samY;
     OrthogonalTiledMapRenderer renderer;
 
-    public GameScreenUW(HighCastle game) {
+    public GameScreenEnt(HighCastle game) {
         this.game = game;
         touch = new Vector3();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1920, 1080);
 
         batch = new SpriteBatch();
-        renderer = new OrthogonalTiledMapRenderer(uverworld);
+        renderer = new OrthogonalTiledMapRenderer(Enterance);
         samX = 960 - 64;
         samY = 540 - 64;
     }
@@ -57,7 +57,7 @@ public class GameScreenUW implements Screen {
             samX = (int)touch.x;
             samY = (int)touch.y;
         }
-        if(samY<10){
+        if(samX>1900){
             game.setScreen(new GameScreen(game));
             dispose();
         }
