@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.Tools.GameManager;
+import com.mygdx.game.Tools.InputManager;
 
 import static com.mygdx.game.Tools.Assets.Samurai;
 import static com.mygdx.game.Tools.Assets.doortouw;
@@ -21,6 +23,7 @@ public class GameScreenUW implements Screen {
     int samX;
     int samY;
     OrthogonalTiledMapRenderer renderer;
+    private float w,h;
 
     public GameScreenUW(HighCastle game) {
         this.game = game;
@@ -32,6 +35,9 @@ public class GameScreenUW implements Screen {
         renderer = new OrthogonalTiledMapRenderer(uverworld);
         samX = 960 - 64;
         samY = 540 - 64;
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getWidth();
+        GameManager.initialize(w, h);
     }
 
     @Override
@@ -43,9 +49,12 @@ public class GameScreenUW implements Screen {
         batch.setProjectionMatrix(camera.combined);
         renderer.setView(camera);
         renderer.render();
+        InputManager.handleInput(camera, Samurai);
 
         batch.begin();
-        batch.draw(Samurai, samX, samY, 150, 150);
+        batch.setProjectionMatrix(camera.combined);
+        Samurai.draw(batch);
+        GameManager.renderGame(batch);
         batch.end();
 
     }

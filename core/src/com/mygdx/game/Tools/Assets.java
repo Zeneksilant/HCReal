@@ -11,9 +11,18 @@ public class Assets {
     // фон MainMenu
     public static Texture texture_back;
     public static Sprite sprite_back;
+    // экран паузы
+    public static Texture texture_pausescreen;
+    public static Sprite pauseScreen;
+    // иконка паузы
+    public static Texture texture_pausebutton;
+    public static Sprite pausebutton;
     // главный герой
     public static Texture texture_sam;
     public static Sprite Samurai;
+    // враг собака
+    public static Texture texture_dog1;
+    public static Sprite dog1;
     // дверь
     public static Texture texture_dtuw;
     public static Sprite doortouw;
@@ -28,13 +37,23 @@ public class Assets {
     // карта входа в замок
     public static TiledMap Enterance;
 
+
     public static void load() {
         texture_back = new Texture(Gdx.files.internal("backgrounds/MM-for-TLG.png"));
         texture_back.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         sprite_back = new Sprite(texture_back);
 
+        texture_pausescreen = new Texture(Gdx.files.internal("backgrounds/pausescreen.png"));
+        pauseScreen = new Sprite(texture_pausescreen);
+
+        texture_pausebutton = new Texture(Gdx.files.internal("Buttons/PauseIcon.png"));
+        pausebutton = new Sprite(texture_pausebutton);
+
         texture_sam = new Texture(Gdx.files.internal("Samurai1.png"));
         Samurai = new Sprite(texture_sam);
+
+        texture_dog1 = new Texture(Gdx.files.internal("Enemies/Dog1.png"));
+        dog1 = new Sprite(texture_dog1);
 
         texture_dtuw = new Texture(Gdx.files.internal("dtuw.png"));
         doortouw = new Sprite(texture_dtuw);

@@ -7,10 +7,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.Tools.GameManager;
+import com.mygdx.game.Tools.InputManager;
 
 import static com.mygdx.game.Tools.Assets.CEgate;
 import static com.mygdx.game.Tools.Assets.Enterance;
 import static com.mygdx.game.Tools.Assets.Samurai;
+import static com.mygdx.game.Tools.Assets.dog1;
+import static com.mygdx.game.Tools.Assets.texture_dog1;
 import static com.mygdx.game.Tools.Assets.uverworld;
 
 public class GameScreenEnt implements Screen {
@@ -20,7 +24,10 @@ public class GameScreenEnt implements Screen {
     Vector3 touch;
     int samX;
     int samY;
+    int dogX;
+    int dogY;
     OrthogonalTiledMapRenderer renderer;
+    private float w,h;
 
     public GameScreenEnt(HighCastle game) {
         this.game = game;
@@ -32,6 +39,11 @@ public class GameScreenEnt implements Screen {
         renderer = new OrthogonalTiledMapRenderer(Enterance);
         samX = 960 - 64;
         samY = 540 - 64;
+        dogX = samX + 10;
+        dogY = samY +10;
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getWidth();
+        GameManager.initialize(w, h);
     }
 
     @Override
@@ -43,9 +55,13 @@ public class GameScreenEnt implements Screen {
         batch.setProjectionMatrix(camera.combined);
         renderer.setView(camera);
         renderer.render();
+        InputManager.handleInput(camera, Samurai);
 
         batch.begin();
-        batch.draw(Samurai, samX, samY, 150, 150);
+        batch.draw(dog1, dogX, dogY);
+        batch.setProjectionMatrix(camera.combined);
+        Samurai.draw(batch);
+        GameManager.renderGame(batch);
         batch.end();
 
     }
