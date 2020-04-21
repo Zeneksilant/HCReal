@@ -8,16 +8,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
 public class GameManager {
-    static Button ButtonUpClass;
-    static Button ButtonDownClass;
-    static Button ButtonRightClass;
-    static Button ButtonLeftClass;
+    public static Button ButtonUpClass;
+    public static Button ButtonDownClass;
+    public static Button ButtonRightClass;
+    public static Button ButtonLeftClass;
 
     static Texture ButtonDownTexture;
     static Texture ButtonUpTexture;
     static Texture ButtonRightTexture;
     static Texture ButtonLeftTexture;
-    static Vector3 temp = new Vector3(); // временный вектор для хранения входных координат
+    public static Vector3 temp = new Vector3(); // временный вектор для хранения входных координат
 
     private static final float BUTTON_RESIZE_FACTOR = 2500f;
     // правая и левая кнопка

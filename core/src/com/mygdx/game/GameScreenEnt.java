@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
@@ -14,8 +15,13 @@ import static com.mygdx.game.Tools.Assets.CEgate;
 import static com.mygdx.game.Tools.Assets.Enterance;
 import static com.mygdx.game.Tools.Assets.Samurai;
 import static com.mygdx.game.Tools.Assets.dog1;
+import static com.mygdx.game.Tools.Assets.dog2;
 import static com.mygdx.game.Tools.Assets.texture_dog1;
 import static com.mygdx.game.Tools.Assets.uverworld;
+import static com.mygdx.game.Tools.GameManager.ButtonDownClass;
+import static com.mygdx.game.Tools.GameManager.ButtonLeftClass;
+import static com.mygdx.game.Tools.GameManager.ButtonRightClass;
+import static com.mygdx.game.Tools.GameManager.ButtonUpClass;
 
 public class GameScreenEnt implements Screen {
     HighCastle game;
@@ -26,8 +32,10 @@ public class GameScreenEnt implements Screen {
     int samY;
     int dogX;
     int dogY;
+    int dog2X;
+    int dog2Y;
     OrthogonalTiledMapRenderer renderer;
-    private float w,h;
+    private float w, h;
 
     public GameScreenEnt(HighCastle game) {
         this.game = game;
@@ -39,8 +47,10 @@ public class GameScreenEnt implements Screen {
         renderer = new OrthogonalTiledMapRenderer(Enterance);
         samX = 960 - 64;
         samY = 540 - 64;
-        dogX = samX + 10;
-        dogY = samY +10;
+        dogX = 600;
+        dogY = 600;
+        dog2X = 300;
+        dog2Y = 300;
         w = Gdx.graphics.getWidth();
         h = Gdx.graphics.getWidth();
         GameManager.initialize(w, h);
@@ -58,26 +68,58 @@ public class GameScreenEnt implements Screen {
         InputManager.handleInput(camera, Samurai);
 
         batch.begin();
+
         batch.draw(dog1, dogX, dogY);
+        batch.draw(dog2, dog2X, dog2Y);
         batch.setProjectionMatrix(camera.combined);
         Samurai.draw(batch);
         GameManager.renderGame(batch);
+
         batch.end();
 
     }
 
-    public void generalupdate(Vector3 touch, OrthographicCamera camera){
+    public void generalupdate(Vector3 touch, OrthographicCamera camera) {
         if(Gdx.input.isTouched()){
             touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(touch);
             samX = (int)touch.x;
             samY = (int)touch.y;
         }
-        if(samX>1900){
+        if (samX > 1900) {
             game.setScreen(new GameScreen(game));
             dispose();
         }
+            if(Gdx.input.justTouched()){
+        // Получаем координаты касания
+        // И устанавливаем значения координат в вектор temp
+        GameManager.temp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+        // получаем координаты касания
+        // относительно области просмотра нашей "камеры"
+        camera.unproject(GameManager.temp);
+        float touchX = GameManager.temp.x;
+        float touchY = GameManager.temp.y;
+
+
+        if ((touchX >= ButtonUpClass.position.x) && touchX <= (ButtonUpClass.position.x + ButtonUpClass.width) && (touchY >= ButtonUpClass.position.y) && touchY <= (ButtonUpClass.position.y + ButtonUpClass.height)) {
+            dogY -= 40;
+            dog2Y += 40;
+        }
+        if ((touchX >= ButtonDownClass.position.x) && touchX <= (ButtonDownClass.position.x + ButtonDownClass.width) && (touchY >= ButtonDownClass.position.y) && touchY <= (ButtonDownClass.position.y + ButtonDownClass.height)) {
+            dogY += 40;
+            dog2Y -= 40;
+        }
+        if ((touchX >= ButtonRightClass.position.x) && touchX <= (ButtonRightClass.position.x + ButtonRightClass.width) && (touchY >= ButtonRightClass.position.y) && touchY <= (ButtonRightClass.position.y + ButtonRightClass.height)) {
+            dogX -= 40;
+            dog2X += 40;
+        }
+        if ((touchX >= ButtonLeftClass.position.x) && touchX <= (ButtonLeftClass.position.x + ButtonLeftClass.width) && (touchY >= ButtonLeftClass.position.y) && touchY <= (ButtonLeftClass.position.y + ButtonLeftClass.height)) {
+            dogX += 40;
+            dog2X -= 40;
+        }
     }
+
+}
 
     @Override
     public void show() {

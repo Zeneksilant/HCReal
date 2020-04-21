@@ -23,6 +23,7 @@ public class Assets {
     // враг собака
     public static Texture texture_dog1;
     public static Sprite dog1;
+    public static Sprite dog2;
     // дверь
     public static Texture texture_dtuw;
     public static Sprite doortouw;
@@ -54,6 +55,7 @@ public class Assets {
 
         texture_dog1 = new Texture(Gdx.files.internal("Enemies/Dog1.png"));
         dog1 = new Sprite(texture_dog1);
+        dog2 = new Sprite(texture_dog1);
 
         texture_dtuw = new Texture(Gdx.files.internal("dtuw.png"));
         doortouw = new Sprite(texture_dtuw);
