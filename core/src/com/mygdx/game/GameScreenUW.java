@@ -66,7 +66,7 @@ public class GameScreenUW implements Screen {
             samX = (int)touch.x;
             samY = (int)touch.y;
         }
-        if(samY<20){
+        if(samY<40){
             game.setScreen(new GameScreen(game));
             dispose();
         }
