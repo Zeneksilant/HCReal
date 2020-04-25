@@ -11,6 +11,9 @@ public class Assets {
     // фон MainMenu
     public static Texture texture_back;
     public static Sprite sprite_back;
+    //gameover фон
+    public static Texture texture_gameover;
+    public static Sprite sprite_gameover;
     // экран паузы
     public static Texture texture_pausescreen;
     public static Sprite pauseScreen;
@@ -24,6 +27,7 @@ public class Assets {
     public static Texture texture_dog1;
     public static Sprite dog1;
     public static Sprite dog2;
+    public static Sprite dog3;
     // дверь
     public static Texture texture_dtuw;
     public static Sprite doortouw;
@@ -44,6 +48,9 @@ public class Assets {
         texture_back.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         sprite_back = new Sprite(texture_back);
 
+        texture_gameover = new Texture(Gdx.files.internal("backgrounds/GameoverScreen.png"));
+        sprite_gameover = new Sprite(texture_gameover);
+
         texture_pausescreen = new Texture(Gdx.files.internal("backgrounds/pausescreen.png"));
         pauseScreen = new Sprite(texture_pausescreen);
 
@@ -56,6 +63,7 @@ public class Assets {
         texture_dog1 = new Texture(Gdx.files.internal("Enemies/Dog1.png"));
         dog1 = new Sprite(texture_dog1);
         dog2 = new Sprite(texture_dog1);
+        dog3 = new Sprite(texture_dog1);
 
         texture_dtuw = new Texture(Gdx.files.internal("dtuw.png"));
         doortouw = new Sprite(texture_dtuw);

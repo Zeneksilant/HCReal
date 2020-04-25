@@ -16,7 +16,9 @@ import static com.mygdx.game.Tools.Assets.Enterance;
 import static com.mygdx.game.Tools.Assets.Samurai;
 import static com.mygdx.game.Tools.Assets.dog1;
 import static com.mygdx.game.Tools.Assets.dog2;
+import static com.mygdx.game.Tools.Assets.dog3;
 import static com.mygdx.game.Tools.Assets.texture_dog1;
+import static com.mygdx.game.Tools.Assets.texture_sam;
 import static com.mygdx.game.Tools.Assets.uverworld;
 import static com.mygdx.game.Tools.GameManager.ButtonDownClass;
 import static com.mygdx.game.Tools.GameManager.ButtonLeftClass;
@@ -30,12 +32,10 @@ public class GameScreenEnt implements Screen {
     Vector3 touch;
     int samX;
     int samY;
-    int dogX;
-    int dogY;
-    int dog2X;
-    int dog2Y;
+    int dogX, dogY, dog2X, dog2Y, dog3X, dog3Y;
     OrthogonalTiledMapRenderer renderer;
     private float w, h;
+    int ht;
 
     public GameScreenEnt(HighCastle game) {
         this.game = game;
@@ -51,6 +51,9 @@ public class GameScreenEnt implements Screen {
         dogY = 600;
         dog2X = 300;
         dog2Y = 300;
+        dog3X = 700;
+        dog3Y = 700;
+        ht = 3;
         w = Gdx.graphics.getWidth();
         h = Gdx.graphics.getWidth();
         GameManager.initialize(w, h);
@@ -71,6 +74,7 @@ public class GameScreenEnt implements Screen {
 
         batch.draw(dog1, dogX, dogY);
         batch.draw(dog2, dog2X, dog2Y);
+        batch.draw(dog3, dog3X, dog3Y);
         batch.setProjectionMatrix(camera.combined);
         Samurai.draw(batch);
         GameManager.renderGame(batch);
@@ -100,25 +104,28 @@ public class GameScreenEnt implements Screen {
         float touchX = GameManager.temp.x;
         float touchY = GameManager.temp.y;
 
-
         if ((touchX >= ButtonUpClass.position.x) && touchX <= (ButtonUpClass.position.x + ButtonUpClass.width) && (touchY >= ButtonUpClass.position.y) && touchY <= (ButtonUpClass.position.y + ButtonUpClass.height)) {
-            dogY -= 40;
-            dog2Y += 40;
+            dogY -= 40; dog3Y -= 40; dog2Y += 40;
         }
         if ((touchX >= ButtonDownClass.position.x) && touchX <= (ButtonDownClass.position.x + ButtonDownClass.width) && (touchY >= ButtonDownClass.position.y) && touchY <= (ButtonDownClass.position.y + ButtonDownClass.height)) {
-            dogY += 40;
-            dog2Y -= 40;
+            dogY += 40; dog3Y -= 40; dog2Y -= 40;
         }
         if ((touchX >= ButtonRightClass.position.x) && touchX <= (ButtonRightClass.position.x + ButtonRightClass.width) && (touchY >= ButtonRightClass.position.y) && touchY <= (ButtonRightClass.position.y + ButtonRightClass.height)) {
-            dogX -= 40;
-            dog2X += 40;
+            dogX -= 40; dog3X -= 40; dog2X += 40;
         }
         if ((touchX >= ButtonLeftClass.position.x) && touchX <= (ButtonLeftClass.position.x + ButtonLeftClass.width) && (touchY >= ButtonLeftClass.position.y) && touchY <= (ButtonLeftClass.position.y + ButtonLeftClass.height)) {
-            dogX += 40;
-            dog2X -= 40;
+            dogX += 40; dog3X -= 40; dog2X -= 40;
         }
     }
-
+        if((Samurai.getX() - dogX >10) | (Samurai.getX() - dog2X > 10) | (Samurai.getX() - dog3X > 10) | (Samurai.getY() - dogY == 10) | (Samurai.getY() - dog2Y == 10) | (Samurai.getY() - dog3Y == 10)){
+            game.setScreen(new GameoverScreen(game));
+            dispose();
+            //ht--;
+        }
+        /*if(ht==0){
+            game.setScreen(new GameoverScreen(game));
+            dispose();
+        }*/
 }
 
     @Override
@@ -135,7 +142,6 @@ public class GameScreenEnt implements Screen {
     public void resume() {
 
     }
-
 
     @Override
     public void dispose() {
