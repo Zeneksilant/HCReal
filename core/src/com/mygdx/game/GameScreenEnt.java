@@ -118,14 +118,15 @@ public class GameScreenEnt implements Screen {
         }
     }
         if((Samurai.getX() - dogX >10) | (Samurai.getX() - dog2X > 10) | (Samurai.getX() - dog3X > 10) | (Samurai.getY() - dogY == 10) | (Samurai.getY() - dog2Y == 10) | (Samurai.getY() - dog3Y == 10)){
-            game.setScreen(new GameoverScreen(game));
-            dispose();
-            //ht--;
+            ht--;
         }
-        /*if(ht==0){
+        if(ht==0){
             game.setScreen(new GameoverScreen(game));
             dispose();
-        }*/
+        }
+        if(GameoverScreen.x>750){
+            game.setScreen(new GameScreenEnt(game));
+        }
 }
 
     @Override

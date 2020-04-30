@@ -5,14 +5,18 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.game.Tools.Assets;
+import com.badlogic.gdx.math.Vector3;
 
 public class GameoverScreen implements Screen {
     final HighCastle game;
     OrthographicCamera camera;
+    static int x, y;
+    Vector3 touch;
 
     public GameoverScreen(final HighCastle game) {
         this.game = game;
 
+        touch = new Vector3();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1920, 1080);
     }
@@ -27,8 +31,13 @@ public class GameoverScreen implements Screen {
         game.batch.begin();
         game.batch.draw(Assets.sprite_gameover, 0, 0);
         game.batch.end();
-
-        if (Gdx.input.isTouched()){
+        if(Gdx.input.isTouched()){
+            touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(touch);
+            x = (int)touch.x;
+            y = (int)touch.y;
+        }
+        if (x>750){
             game.setScreen(new MainMenu(game));
             dispose();
         }
