@@ -31,9 +31,14 @@ public class Assets {
     // дверь
     public static Texture texture_dtuw;
     public static Sprite doortouw;
-
     public static Texture texture_CEgate;
     public static Sprite CEgate;
+    //мечь
+    public static Texture texture_sword;
+    public static Sprite Sword;
+    //смерть
+    public static Texture texture_grave;
+    public static Sprite Grave;
     // карта орода
     public static TiledMap townmap;
     public static TmxMapLoader mapLoader;
@@ -70,6 +75,12 @@ public class Assets {
 
         texture_CEgate = new Texture(Gdx.files.internal("CEgate.png"));
         CEgate = new Sprite(texture_CEgate);
+
+        texture_sword = new Texture(Gdx.files.internal("sword.png"));
+        Sword = new Sprite(texture_sword);
+
+        texture_grave = new Texture(Gdx.files.internal("dead.png"));
+        Grave = new Sprite(texture_grave);
 
         mapLoader = new TmxMapLoader();
         townmap = mapLoader.load("maps/town.tmx");

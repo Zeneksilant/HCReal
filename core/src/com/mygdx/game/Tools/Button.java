@@ -9,6 +9,7 @@ public class Button {
     static Sprite ButtonDownSprite;
     static Sprite ButtonRightSprite;
     static Sprite ButtonLeftSprite;
+    static Sprite ActionButtonSprite;
     public Vector2 position = new Vector2();
 
     public float height;
@@ -19,6 +20,7 @@ public class Button {
         ButtonDownSprite.draw(batch);
         ButtonRightSprite.draw(batch);
         ButtonLeftSprite.draw(batch);
+        ActionButtonSprite.draw(batch);
 
     }
 }

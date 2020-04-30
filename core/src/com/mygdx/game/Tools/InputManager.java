@@ -3,10 +3,13 @@ package com.mygdx.game.Tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+
+import static com.mygdx.game.Tools.Assets.Sword;
 import static com.mygdx.game.Tools.GameManager.ButtonDownClass;
 import static com.mygdx.game.Tools.GameManager.ButtonLeftClass;
 import static com.mygdx.game.Tools.GameManager.ButtonRightClass;
 import static com.mygdx.game.Tools.GameManager.ButtonUpClass;
+import static com.mygdx.game.Tools.GameManager.ActionButtonClass;
 
 public class InputManager {
     public static void handleInput(OrthographicCamera camera, Sprite sprite) {
@@ -35,6 +38,9 @@ public class InputManager {
             }
             if ((touchX >= ButtonLeftClass.position.x) && touchX <= (ButtonLeftClass.position.x + ButtonLeftClass.width) && (touchY >= ButtonLeftClass.position.y) && touchY <= (ButtonLeftClass.position.y + ButtonLeftClass.height)) {
                 sprite.translateX(-60.0f);
+            }
+            if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height)){
+                Sword.rotate90(true);
             }
         }
 
