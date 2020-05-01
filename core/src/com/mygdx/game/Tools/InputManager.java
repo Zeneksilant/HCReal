@@ -12,7 +12,7 @@ import static com.mygdx.game.Tools.GameManager.ButtonUpClass;
 import static com.mygdx.game.Tools.GameManager.ActionButtonClass;
 
 public class InputManager {
-    public static void handleInput(OrthographicCamera camera, Sprite sprite) {
+    public static void handleInput(OrthographicCamera camera, Sprite Samurai) {
         if (Gdx.input.justTouched()) {
             // Получаем координаты касания
             // И устанавливаем значения координат в вектор temp
@@ -26,18 +26,18 @@ public class InputManager {
 
             if ((touchX >= ButtonUpClass.position.x) && touchX <= (ButtonUpClass.position.x + ButtonUpClass.width) && (touchY >= ButtonUpClass.position.y) && touchY <= (ButtonUpClass.position.y + ButtonUpClass.height)) {
 
-                sprite.translateY(60.0f);
+                Samurai.translateY(60.0f);
             }
             if ((touchX >= ButtonDownClass.position.x) && touchX <= (ButtonDownClass.position.x + ButtonDownClass.width) && (touchY >= ButtonDownClass.position.y) && touchY <= (ButtonDownClass.position.y + ButtonDownClass.height)) {
 
-                sprite.translateY(-60.0f);
+                Samurai.translateY(-60.0f);
 
             }
             if ((touchX >= ButtonRightClass.position.x) && touchX <= (ButtonRightClass.position.x + ButtonRightClass.width) && (touchY >= ButtonRightClass.position.y) && touchY <= (ButtonRightClass.position.y + ButtonRightClass.height)) {
-                sprite.translateX(60.0f);
+                Samurai.translateX(60.0f);
             }
             if ((touchX >= ButtonLeftClass.position.x) && touchX <= (ButtonLeftClass.position.x + ButtonLeftClass.width) && (touchY >= ButtonLeftClass.position.y) && touchY <= (ButtonLeftClass.position.y + ButtonLeftClass.height)) {
-                sprite.translateX(-60.0f);
+                Samurai.translateX(-60.0f);
             }
             if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height)){
                 Sword.rotate90(true);

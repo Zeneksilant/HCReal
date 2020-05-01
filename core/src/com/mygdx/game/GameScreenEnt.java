@@ -75,12 +75,31 @@ public class GameScreenEnt implements Screen {
         InputManager.handleInput(camera, Samurai);
 
         batch.begin();
-
         batch.draw(dog1, dogX, dogY);
         batch.draw(dog2, dog2X, dog2Y);
         batch.draw(dog3, dog3X, dog3Y);
         batch.setProjectionMatrix(camera.combined);
         Samurai.draw(batch);
+        float touchX = GameManager.temp.x;
+        float touchY = GameManager.temp.y;
+        if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height) &&
+                ((Samurai.getX() - dogX >60) | (Samurai.getY() - dogY > 60))){
+            batch.draw(texture_sword, dogX - 10, dogY, 100, 100);
+            dog1 = new Sprite(texture_grave);
+            dog1.setPosition(50, 50);
+        }
+        if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height) &&
+                ((Samurai.getX() - dog2X > 30) | (Samurai.getY() - dog2Y == 30))){
+            batch.draw(texture_sword, dog2X - 10, dog2Y, 100, 100);
+            dog2 = new Sprite(texture_grave);
+            dog1.setPosition(100, 50);
+        }
+        if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height) &&
+                ((Samurai.getX() - dog3X >30) | (Samurai.getY() - dog3Y == 30))){
+            batch.draw(texture_sword, dog3X - 10, dog3Y, 100, 100);
+            dog2 = new Sprite(texture_grave);
+            dog1.setPosition(150, 50);
+        }
         GameManager.renderGame(batch);
 
         batch.end();
@@ -122,24 +141,6 @@ public class GameScreenEnt implements Screen {
         }
         if ((touchX >= ButtonLeftClass.position.x) && touchX <= (ButtonLeftClass.position.x + ButtonLeftClass.width) && (touchY >= ButtonLeftClass.position.y) && touchY <= (ButtonLeftClass.position.y + ButtonLeftClass.height)) {
             dogX += 40; dog3X -= 40; dog2X -= 40;
-        }
-        if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height) &&
-                ((Samurai.getX() - dogX >30) | (Samurai.getY() - dogY == 30))){
-                batch.draw(texture_sword, dogX, dogY);
-                batch.draw(texture_grave, dogX, dogY);
-                texture_dog1.dispose();
-        }
-        if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height) &&
-                ((Samurai.getX() - dog2X > 30) | (Samurai.getY() - dog2Y == 30))){
-            batch.draw(texture_sword, dog2X, dog2Y);
-            batch.draw(texture_grave, dog2X, dog2Y);
-            texture_dog1.dispose();
-        }
-        if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height) &&
-                ((Samurai.getX() - dog3X >30) | (Samurai.getY() - dog3Y == 30))){
-            batch.draw(texture_sword, dog3X, dog3Y);
-            batch.draw(texture_grave, dog3X, dog3Y);
-            texture_dog1.dispose();
         }
     }
         if((Samurai.getX() - dogX >10) | (Samurai.getX() - dog2X > 10) | (Samurai.getX() - dog3X > 10) | (Samurai.getY() - dogY == 10) | (Samurai.getY() - dog2Y == 10) | (Samurai.getY() - dog3Y == 10)){
