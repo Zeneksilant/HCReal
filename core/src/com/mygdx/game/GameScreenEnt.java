@@ -13,6 +13,7 @@ import com.mygdx.game.Tools.InputManager;
 
 import static com.mygdx.game.Tools.Assets.CEgate;
 import static com.mygdx.game.Tools.Assets.Enterance;
+import static com.mygdx.game.Tools.Assets.Grave;
 import static com.mygdx.game.Tools.Assets.Samurai;
 import static com.mygdx.game.Tools.Assets.Sword;
 import static com.mygdx.game.Tools.Assets.dog1;
@@ -83,22 +84,22 @@ public class GameScreenEnt implements Screen {
         float touchX = GameManager.temp.x;
         float touchY = GameManager.temp.y;
         if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height) &&
-                ((Samurai.getX() - dogX >60) | (Samurai.getY() - dogY > 60))){
+                ((Samurai.getX() > dogX - 100) | (Samurai.getX() < dogX + 100) && ((Samurai.getY() > dogY - 100) | (Samurai.getY() < dogY + 100)))){
             batch.draw(texture_sword, dogX - 10, dogY, 100, 100);
-            dog1 = new Sprite(texture_grave);
-            dog1.setPosition(50, 50);
+            dog1.setPosition(3000, 3000);
+            batch.draw(Grave, 50, 50, 30, 30);
         }
         if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height) &&
-                ((Samurai.getX() - dog2X > 30) | (Samurai.getY() - dog2Y == 30))){
+                ((Samurai.getX() > dog2X - 100) | (Samurai.getX() < dog2X + 100) && ((Samurai.getY() > dog2Y - 100) | (Samurai.getY() < dog2Y + 100)))){
             batch.draw(texture_sword, dog2X - 10, dog2Y, 100, 100);
-            dog2 = new Sprite(texture_grave);
-            dog1.setPosition(100, 50);
+            dog2.setPosition(3000, 3000);
+            batch.draw(Grave, 100, 50, 30, 30);
         }
         if((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y) && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height) &&
-                ((Samurai.getX() - dog3X >30) | (Samurai.getY() - dog3Y == 30))){
+                ((Samurai.getX() > dog3X - 100) | (Samurai.getX() < dog3X + 100) && ((Samurai.getY() > dog3Y - 100) | (Samurai.getY() < dog3Y + 100)))){
             batch.draw(texture_sword, dog3X - 10, dog3Y, 100, 100);
-            dog2 = new Sprite(texture_grave);
-            dog1.setPosition(150, 50);
+            dog3.setPosition(3000, 3000);
+            batch.draw(Grave, 150, 50, 30, 30);
         }
         GameManager.renderGame(batch);
 
