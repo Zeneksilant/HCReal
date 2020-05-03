@@ -83,6 +83,18 @@ public class GameScreen implements Screen {
             game.setScreen(new GameScreenEnt(game));
             dispose();
         }
+        if(Samurai.getX()<5){
+            Samurai.translateX(30);
+        }
+        if(Samurai.getX()>1500){
+            Samurai.translateX(-30);
+        }
+        if(Samurai.getY()<5){
+            Samurai.translateY(30);
+        }
+        if(Samurai.getY()>800){
+            Samurai.translateY(-30);
+        }
     }
 
     @Override

@@ -151,6 +151,54 @@ public class GameScreenEnt implements Screen {
             game.setScreen(new GameoverScreen(game));
             dispose();
         }
+        if(Samurai.getX()<5){
+            Samurai.translateX(30);
+        }
+        if(Samurai.getX()>1500){
+            Samurai.translateX(-30);
+        }
+        if(Samurai.getY()<5){
+            Samurai.translateY(30);
+        }
+        if(Samurai.getY()>800){
+            Samurai.translateY(-30);
+        }
+        if(dog1.getX()<5){
+            dog1.translateX(30);
+        }
+        if(dog1.getX()>1500){
+            dog1.translateX(-30);
+        }
+        if(dog1.getY()<5){
+            dog1.translateY(30);
+        }
+        if(dog1.getY()>800){
+            dog1.translateY(-30);
+        }
+        if(dog2.getX()<5){
+            dog2.translateX(30);
+        }
+        if(dog2.getX()>1500){
+            dog2.translateX(-30);
+        }
+        if(dog2.getY()<5){
+            dog2.translateY(30);
+        }
+        if(dog2.getY()>800){
+            dog2.translateY(-30);
+        }
+        if(dog3.getX()<5){
+            dog3.translateX(30);
+        }
+        if(dog3.getX()>1500){
+            dog3.translateX(-30);
+        }
+        if(dog3.getY()<5){
+            dog3.translateY(30);
+        }
+        if(dog3.getY()>800){
+            dog3.translateY(-30);
+        }
 }
 
     @Override
