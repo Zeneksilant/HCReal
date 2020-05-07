@@ -18,6 +18,7 @@ import com.mygdx.game.HighCastle;
 import com.mygdx.game.Unit;
 
 import static com.mygdx.game.Tools.Assets.CEgate;
+import static com.mygdx.game.Tools.Assets.Samurai;
 import static com.mygdx.game.Tools.Assets.doortouw;
 import static com.mygdx.game.Tools.Assets.joystickArea;
 import static com.mygdx.game.Tools.Assets.texture_sam;
@@ -54,7 +55,7 @@ public class UverWorldScreen implements Screen, InputProcessor {
         samY = 540 - 64;
         touch = new Vector3();
 
-        units[0] = new Unit(960, 300, world, img);
+        units[0] = new Unit(960, 300, world, Samurai);
         units[0].applyForce(new Vector2(100000, 0));
 
         stage.addActor(joystickArea);

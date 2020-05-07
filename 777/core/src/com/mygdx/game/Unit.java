@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -12,20 +13,20 @@ import com.mygdx.game.Sceens.FirstScreen;
 
 public class Unit {
     private Body body;
-    private Texture img;
+    private Sprite sprite;
 
     public static final float RADIUS = 20f;
 
-    public Unit(float x, float y, World world, Texture img){
-        body = createCircle(x, y, RADIUS * FirstScreen.UNIT_SCALE,  world);
-        this.img = img;
+    public Unit(float x, float y, World world, Sprite sprite){
+        body = createCircle(x, y, 60,  world);
+        this.sprite = sprite;
         body.setLinearDamping(1);
     }
 
 
     public void draw(SpriteBatch batch){
         float divR = RADIUS *  FirstScreen.UNIT_SCALE;
-        batch.draw(img, body.getPosition().x - divR, body.getPosition().y - divR, 2 * RADIUS * FirstScreen.UNIT_SCALE, 2 * RADIUS * FirstScreen.UNIT_SCALE);
+        batch.draw(sprite, body.getPosition().x - divR, body.getPosition().y - divR, 300, 300);
     }
 
     public void applyForce(Vector2 v){
