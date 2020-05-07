@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Tools.GameManager;
 import com.mygdx.game.Tools.InputManager;
 
@@ -119,11 +121,9 @@ public class GameScreenEnt implements Screen {
             dispose();
         }
             if(Gdx.input.justTouched()){
-        // Получаем координаты касания
-        // И устанавливаем значения координат в вектор temp
+
         GameManager.temp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-        // получаем координаты касания
-        // относительно области просмотра нашей "камеры"
+
         camera.unproject(GameManager.temp);
         float touchX = GameManager.temp.x;
         float touchY = GameManager.temp.y;
