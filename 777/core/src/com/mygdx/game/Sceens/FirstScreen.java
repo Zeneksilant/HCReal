@@ -29,6 +29,7 @@ import static com.mygdx.game.Tools.Assets.doortouw;
 import static com.mygdx.game.Tools.Assets.joystickArea;
 import static com.mygdx.game.Tools.Assets.texture_sam;
 import static com.mygdx.game.Tools.Assets.townmap;
+//import static com.mygdx.game.Unit.body;
 
 
 public class FirstScreen implements Screen, InputProcessor {
@@ -79,13 +80,13 @@ public class FirstScreen implements Screen, InputProcessor {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
         if(joystickArea.isJoystickDown()){
-            float x = 100 * joystickArea.getValueX();
-            float y = 100 * joystickArea.getValueY();
+            float x = 1000 * joystickArea.getValueX();
+            float y = 1000 * joystickArea.getValueY();
             units[0].setVelocity(x, y);
         }
         else{
@@ -107,10 +108,6 @@ public class FirstScreen implements Screen, InputProcessor {
         }
         batch.draw(doortouw, 760, 890);
         batch.draw(CEgate, 100, 960);
-        if(samX<100){
-            game.setScreen(new CastleEntScreen(game));
-            dispose();
-        }
 
         batch.end();
 
@@ -128,6 +125,22 @@ public class FirstScreen implements Screen, InputProcessor {
         if(samY > 900){
             game.setScreen(new UverWorldScreen(game));
             dispose();
+        }
+        if(samX<100 && samY>500 && samY<700){
+            game.setScreen(new CastleEntScreen(game));
+            dispose();
+        }
+        if(Samurai.getX()<5){
+            Samurai.translateX(30);
+        }
+        if(Samurai.getX()>1500){
+            Samurai.translateX(-30);
+        }
+        if(Samurai.getY()<5){
+            Samurai.translateY(30);
+        }
+        if(Samurai.getY()>800){
+            Samurai.translateY(-30);
         }
     }
 

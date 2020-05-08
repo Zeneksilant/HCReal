@@ -64,7 +64,7 @@ public class CastleEntScreen implements Screen, InputProcessor {
         units[2] = new Unit(300, 350, world, new Sprite(texture_dog1, 200, 200));
         units[3] = new Unit(350, 350, world, new Sprite(texture_dog1, 200, 200));
         units[4] = new Unit(500, 200, world, new Sprite(texture_dog1, 200, 200));
-        units[0].applyForce(new Vector2(100, 0));
+        units[0].applyForce(new Vector2(100000, 0));
 
         stage.addActor(joystickArea);
 
