@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.HighCastle;
+import com.mygdx.game.Tools.GameManager;
 import com.mygdx.game.Unit;
 
 import static com.mygdx.game.Tools.Assets.CEgate;
@@ -38,14 +39,12 @@ public class CastleEntScreen implements Screen, InputProcessor {
     int samY;
     Vector3 touch;
     private Unit[] units = new Unit[count];
-
     public static final float UNIT_SCALE = 9;
-
     private World world;
     private OrthographicCamera camera = new OrthographicCamera();
     private OrthogonalTiledMapRenderer renderer;
-
     private Stage stage = new Stage();
+    private float w,h;
 
     public CastleEntScreen(HighCastle game) {
         this.game = game;
@@ -57,9 +56,8 @@ public class CastleEntScreen implements Screen, InputProcessor {
         samX = 960 - 64;
         samY = 540 - 64;
         touch = new Vector3();
-        dog1.setSize(10, 10);
 
-        units[0] = new Unit(1800, 200, world, Samurai);
+        units[0] = new Unit(1800, 600, world, Samurai);
         units[1] = new Unit(350, 300, world, new Sprite(texture_dog1, 200, 200));
         units[2] = new Unit(300, 350, world, new Sprite(texture_dog1, 200, 200));
         units[3] = new Unit(350, 350, world, new Sprite(texture_dog1, 200, 200));
@@ -67,11 +65,13 @@ public class CastleEntScreen implements Screen, InputProcessor {
         units[0].applyForce(new Vector2(100000, 0));
 
         stage.addActor(joystickArea);
-
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getWidth();
+        GameManager.initialize(w, h);
     }
 
     @Override
@@ -107,6 +107,7 @@ public class CastleEntScreen implements Screen, InputProcessor {
 
         batch.begin();
 
+        GameManager.renderGame(batch);
         //batch.draw(img, 20, 20, size * UNIT_SCALE, size * UNIT_SCALE);
         for (int i = 0; i < count; i++) {
             units[i].draw(batch);

@@ -21,6 +21,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.GameUI.Joystick;
 import com.mygdx.game.GameUI.JoystickArea;
 import com.mygdx.game.HighCastle;
+import com.mygdx.game.Tools.GameManager;
+import com.mygdx.game.Tools.InputManager;
 import com.mygdx.game.Unit;
 
 import static com.mygdx.game.Tools.Assets.CEgate;
@@ -33,6 +35,7 @@ import static com.mygdx.game.Tools.Assets.townmap;
 
 
 public class FirstScreen implements Screen, InputProcessor {
+
     HighCastle game;
     SpriteBatch batch;
     Texture img = texture_sam;
@@ -42,16 +45,15 @@ public class FirstScreen implements Screen, InputProcessor {
     int samY;
     Vector3 touch;
     private Unit[] units = new Unit[count];
-
     public static final float UNIT_SCALE = 10;
-
     private World world;
     private OrthographicCamera camera = new OrthographicCamera();
     private OrthogonalTiledMapRenderer renderer;
-
     private Stage stage = new Stage();
+    private float w,h;
 
     public FirstScreen(HighCastle game) {
+
         this.game = game;
         batch = new SpriteBatch();
         renderer = new OrthogonalTiledMapRenderer(townmap);
@@ -61,16 +63,16 @@ public class FirstScreen implements Screen, InputProcessor {
         samX = 960 - 64;
         samY = 540 - 64;
         touch = new Vector3();
-
         units[0] = new Unit(300, 300, world, Samurai);
         units[0].applyForce(new Vector2(10000, 0));
-
         stage.addActor(joystickArea);
-
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getWidth();
+        GameManager.initialize(w, h);
     }
 
     @Override
@@ -82,7 +84,7 @@ public class FirstScreen implements Screen, InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        InputManager.handleInput(camera, Samurai);
 
         if(joystickArea.isJoystickDown()){
             float x = 1000 * joystickArea.getValueX();
@@ -102,6 +104,7 @@ public class FirstScreen implements Screen, InputProcessor {
 
         batch.begin();
 
+        GameManager.renderGame(batch);
         //batch.draw(img, 20, 20, size * UNIT_SCALE, size * UNIT_SCALE);
         for (int i = 0; i < count; i++) {
             units[i].draw(batch);
