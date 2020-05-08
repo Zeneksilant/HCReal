@@ -130,17 +130,21 @@ public class FirstScreen implements Screen, InputProcessor {
             game.setScreen(new CastleEntScreen(game));
             dispose();
         }
-        if(Samurai.getX()<5){
-            Samurai.translateX(30);
+        if(units[0].getpX()<100){
+            game.setScreen(new CastleEntScreen(game));
+            dispose();
         }
-        if(Samurai.getX()>1500){
-            Samurai.translateX(-30);
+        if(units[0].getpX()>1820){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
         }
-        if(Samurai.getY()<5){
-            Samurai.translateY(30);
+        if(units[0].getpY()<100){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
         }
-        if(Samurai.getY()>800){
-            Samurai.translateY(-30);
+        if(units[0].getpY()>980){
+            game.setScreen(new UverWorldScreen(game));
+            dispose();
         }
     }
 

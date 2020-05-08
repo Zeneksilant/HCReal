@@ -1,5 +1,6 @@
 package com.mygdx.game.Sceens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
@@ -115,6 +116,22 @@ public class UverWorldScreen implements Screen, InputProcessor {
         }
         if(samY<40){
             game.setScreen(new FirstScreen(game));
+            dispose();
+        }
+        if(units[0].getpX()<100){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
+        }
+        if(units[0].getpX()>1820){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
+        }
+        if(units[0].getpY()<100){
+            game.setScreen(new FirstScreen(game));
+            dispose();
+        }
+        if(units[0].getpY()>980){
+            game.setScreen(new GameOverScreen(game));
             dispose();
         }
     }

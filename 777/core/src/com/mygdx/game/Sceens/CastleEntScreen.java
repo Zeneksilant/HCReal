@@ -129,6 +129,22 @@ public class CastleEntScreen implements Screen, InputProcessor {
             game.setScreen(new FirstScreen(game));
             dispose();
         }
+        if(units[0].getpX()<100){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
+        }
+        if(units[0].getpX()>1820){
+            game.setScreen(new FirstScreen(game));
+            dispose();
+        }
+        if(units[0].getpY()<100){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
+        }
+        if(units[0].getpY()>980){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
+        }
     }
 
     @Override

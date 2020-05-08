@@ -29,6 +29,14 @@ public class Unit {
         batch.draw(sprite, body.getPosition().x - divR, body.getPosition().y - divR, 300, 300);
     }
 
+    public float getpX(){
+        return body.getPosition().x;
+    }
+
+    public float getpY(){
+        return body.getPosition().y;
+    }
+
     public void applyForce(Vector2 v){
         body.applyForceToCenter(v, true);
 
