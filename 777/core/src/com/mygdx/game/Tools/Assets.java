@@ -15,9 +15,16 @@ public class Assets {
     // фон первого отрывка истории
     public static Texture texture_welcome;
     public static Sprite sprite_welcome;
+    public static Texture texture_welcomerus;
+    public static Sprite sprite_welcomerus;
+    public static Texture texture_welcomejp;
+    public static Sprite sprite_welcomejp;
     //gameover фон
     public static Texture texture_gameover;
     public static Sprite sprite_gameover;
+    //фон страницы выбора языка
+    public static Texture texture_lang;
+    public static Sprite LangSelect;
     // экран паузы
     public static Texture texture_pausescreen;
     public static Sprite pauseScreen;
@@ -64,8 +71,15 @@ public class Assets {
         texture_gameover = new Texture(Gdx.files.internal("Backgrounds/GameoverScreen.png"));
         sprite_gameover = new Sprite(texture_gameover);
 
+        texture_lang = new Texture(Gdx.files.internal("Backgrounds/selectlanguage.png"));
+        LangSelect = new Sprite(texture_lang);
+
         texture_welcome = new Texture(Gdx.files.internal("Backgrounds/Welcomepage.png"));
         sprite_welcome = new Sprite(texture_welcome);
+        texture_welcomerus = new Texture(Gdx.files.internal("Backgrounds/WelcomePageRus.png"));
+        sprite_welcomerus = new Sprite(texture_welcomerus);
+        texture_welcomejp = new Texture(Gdx.files.internal("Backgrounds/WelcomePageJP.png"));
+        sprite_welcomejp = new Sprite(texture_welcomejp);
 
         texture_pausescreen = new Texture(Gdx.files.internal("Backgrounds/pausescreen.png"));
         pauseScreen = new Sprite(texture_pausescreen);

@@ -10,6 +10,7 @@ import com.mygdx.game.Tools.Assets;
 public class WelcomeScreen implements Screen {
     final HighCastle game;
     OrthographicCamera camera;
+    int tt = 0;
 
     public WelcomeScreen(final HighCastle game) {
         this.game = game;
@@ -30,6 +31,9 @@ public class WelcomeScreen implements Screen {
         game.batch.end();
 
         if (Gdx.input.isTouched()){
+            tt++;
+        }
+        if(tt>4){
             game.setScreen(new MainMenuScreen(game));
             dispose();
         }

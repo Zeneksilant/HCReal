@@ -4,16 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.HighCastle;
 import com.mygdx.game.Tools.Assets;
 
-public class MainMenuScreen implements Screen {
+public class WelcomeScreenJP implements Screen {
     final HighCastle game;
     OrthographicCamera camera;
     int tt = 0;
 
-    public MainMenuScreen(final HighCastle game) {
+    public WelcomeScreenJP(final HighCastle game) {
         this.game = game;
 
         camera = new OrthographicCamera();
@@ -28,16 +27,14 @@ public class MainMenuScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.batch.draw(Assets.sprite_back, 0, 0);
-        game.font.draw(game.batch, "Welcome to HighCastle!", 300, 1000);
-        game.font.draw(game.batch, "Tap anywhere to begin!", 200, 950);
+        game.batch.draw(Assets.sprite_welcomejp, 0, 0);
         game.batch.end();
 
         if (Gdx.input.isTouched()){
             tt++;
         }
-        if(tt>5){
-            game.setScreen(new FirstScreen(game));
+        if(tt>4){
+            game.setScreen(new MainMenuScreen(game));
             dispose();
         }
     }
@@ -69,3 +66,4 @@ public class MainMenuScreen implements Screen {
     @Override
     public void hide() {}
 }
+
