@@ -12,6 +12,9 @@ public class Assets {
     // фон MainMenu
     public static Texture texture_back;
     public static Sprite sprite_back;
+    // фон первого отрывка истории
+    public static Texture texture_welcome;
+    public static Sprite sprite_welcome;
     //gameover фон
     public static Texture texture_gameover;
     public static Sprite sprite_gameover;
@@ -49,7 +52,7 @@ public class Assets {
     public static TiledMap uverworld;
     // карта входа в замок
     public static TiledMap Enterance;
-
+    //зона вокруг джойстика
     public static JoystickArea joystickArea;
 
 
@@ -60,6 +63,9 @@ public class Assets {
 
         texture_gameover = new Texture(Gdx.files.internal("Backgrounds/GameoverScreen.png"));
         sprite_gameover = new Sprite(texture_gameover);
+
+        texture_welcome = new Texture(Gdx.files.internal("Backgrounds/Welcomepage.png"));
+        sprite_welcome = new Sprite(texture_welcome);
 
         texture_pausescreen = new Texture(Gdx.files.internal("Backgrounds/pausescreen.png"));
         pauseScreen = new Sprite(texture_pausescreen);
@@ -87,7 +93,7 @@ public class Assets {
         Sword = new Sprite(texture_sword);
 
         texture_grave = new Texture(Gdx.files.internal("dead.png"));
-        Grave = new Sprite(texture_grave);
+        Grave = new Sprite(texture_grave, 100, 100);
 
         Texture circle = new Texture("Buttons/jcircle.png");
         Texture curJoystick = new Texture("Buttons/JoyStickKrug.png");

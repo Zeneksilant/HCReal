@@ -20,13 +20,17 @@ import com.mygdx.game.Unit;
 
 import static com.mygdx.game.Tools.Assets.CEgate;
 import static com.mygdx.game.Tools.Assets.Enterance;
+import static com.mygdx.game.Tools.Assets.Grave;
 import static com.mygdx.game.Tools.Assets.Samurai;
+import static com.mygdx.game.Tools.Assets.Sword;
 import static com.mygdx.game.Tools.Assets.dog1;
 import static com.mygdx.game.Tools.Assets.doortouw;
 import static com.mygdx.game.Tools.Assets.joystickArea;
 import static com.mygdx.game.Tools.Assets.texture_dog1;
+import static com.mygdx.game.Tools.Assets.texture_grave;
 import static com.mygdx.game.Tools.Assets.texture_sam;
 import static com.mygdx.game.Tools.Assets.townmap;
+import static com.mygdx.game.Tools.GameManager.ActionButtonClass;
 
 public class CastleEntScreen implements Screen, InputProcessor {
     HighCastle game;
@@ -35,8 +39,8 @@ public class CastleEntScreen implements Screen, InputProcessor {
     Texture dd = texture_dog1;
     float size = 50;
     int count = 5;
-    int samX;
-    int samY;
+    int samX = 960 - 64;
+    int samY = 540 - 64;
     Vector3 touch;
     private Unit[] units = new Unit[count];
     public static final float UNIT_SCALE = 9;
@@ -45,6 +49,7 @@ public class CastleEntScreen implements Screen, InputProcessor {
     private OrthogonalTiledMapRenderer renderer;
     private Stage stage = new Stage();
     private float w,h;
+    private int NU = 5;
 
     public CastleEntScreen(HighCastle game) {
         this.game = game;
@@ -53,15 +58,13 @@ public class CastleEntScreen implements Screen, InputProcessor {
         camera.setToOrtho(false, 1920, 1080);
         world = new World(new Vector2(), false);
         //box2DDebugRenderer =new Box2DDebugRenderer();
-        samX = 960 - 64;
-        samY = 540 - 64;
         touch = new Vector3();
 
         units[0] = new Unit(1800, 600, world, Samurai);
-        units[1] = new Unit(350, 300, world, new Sprite(texture_dog1, 200, 200));
-        units[2] = new Unit(300, 350, world, new Sprite(texture_dog1, 200, 200));
-        units[3] = new Unit(350, 350, world, new Sprite(texture_dog1, 200, 200));
-        units[4] = new Unit(500, 200, world, new Sprite(texture_dog1, 200, 200));
+        units[1] = new Unit(350, 600, world, new Sprite(texture_dog1, 200, 200));
+        units[2] = new Unit(300, 675, world, new Sprite(texture_dog1, 200, 200));
+        units[3] = new Unit(350, 675, world, new Sprite(texture_dog1, 200, 200));
+        units[4] = new Unit(500, 450, world, new Sprite(texture_dog1, 200, 200));
         units[0].applyForce(new Vector2(100000, 0));
 
         stage.addActor(joystickArea);
@@ -83,7 +86,6 @@ public class CastleEntScreen implements Screen, InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 
         if(joystickArea.isJoystickDown()){
             float x = 100 * joystickArea.getValueX();
@@ -108,9 +110,41 @@ public class CastleEntScreen implements Screen, InputProcessor {
         batch.begin();
 
         GameManager.renderGame(batch);
+
         //batch.draw(img, 20, 20, size * UNIT_SCALE, size * UNIT_SCALE);
         for (int i = 0; i < count; i++) {
             units[i].draw(batch);
+        }
+
+        if (Gdx.input.justTouched()) {
+
+            GameManager.temp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(GameManager.temp);
+            float touchX = GameManager.temp.x;
+            float touchY = GameManager.temp.y;
+
+            if(((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y)
+                    && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height)) &&
+                    ((units[0].getpX() < units[1].getpX()+200) && (units[0].getpX() > units[1].getpX()-200) && (units[0].getpY() < units[1].getpY()+200) && (units[0].getpY() > units[1].getpY()-200)) |
+                            ((units[0].getpX() < units[2].getpX()+200) && (units[0].getpX() > units[2].getpX()-200) && (units[0].getpY() < units[2].getpY()+200) && (units[0].getpY() > units[2].getpY()-200)) |
+                            ((units[0].getpX() < units[3].getpX()+200) && (units[0].getpX() > units[3].getpX()-200) && (units[0].getpY() < units[3].getpY()+200) && (units[0].getpY() > units[3].getpY()-200)) |
+                            ((units[0].getpX() < units[4].getpX()+200) && (units[0].getpX() > units[4].getpX()-200) && (units[0].getpY() < units[4].getpY()+200) && (units[0].getpY() > units[4].getpY()-200))){
+                batch.draw(Sword, units[0].getpX()-125, units[0].getpY()-50, 75, 75);
+                Sword.rotate90(true);
+                NU--;
+            }
+        }
+        if(NU == 4){
+            units[1]= new Unit(10000, 10000, world, new Sprite(texture_grave, 75, 75));
+        }
+        if(NU == 3){
+            units[2]= new Unit(10000, 10000, world, new Sprite(texture_grave, 75, 75));
+        }
+        if(NU == 2){
+            units[3]= new Unit(10000, 10000, world, new Sprite(texture_grave, 75, 75));
+        }
+        if(NU == 1){
+            units[4]= new Unit(10000, 10000, world, new Sprite(texture_grave, 75, 75));
         }
 
         batch.end();
@@ -143,6 +177,13 @@ public class CastleEntScreen implements Screen, InputProcessor {
             dispose();
         }
         if(units[0].getpY()>980){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
+        }
+        if(((units[0].getpX() < units[1].getpX()+100) && (units[0].getpX() > units[1].getpX()-100) && (units[0].getpY() < units[1].getpY()+100) && (units[0].getpY() > units[1].getpY()-100)) |
+                ((units[0].getpX() < units[2].getpX()+100) && (units[0].getpX() > units[2].getpX()-100) && (units[0].getpY() < units[2].getpY()+100) && (units[0].getpY() > units[2].getpY()-100)) |
+                ((units[0].getpX() < units[3].getpX()+100) && (units[0].getpX() > units[3].getpX()-100) && (units[0].getpY() < units[3].getpY()+100) && (units[0].getpY() > units[3].getpY()-100)) |
+                ((units[0].getpX() < units[4].getpX()+100) && (units[0].getpX() > units[4].getpX()-100) && (units[0].getpY() < units[4].getpY()+100) && (units[0].getpY() > units[4].getpY()-100))){
             game.setScreen(new GameOverScreen(game));
             dispose();
         }
