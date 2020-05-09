@@ -33,8 +33,8 @@ public class WelcomeScreen implements Screen {
         if (Gdx.input.isTouched()){
             tt++;
         }
-        if(tt>4){
-            game.setScreen(new MainMenuScreen(game));
+        if(tt>5){
+            game.setScreen(new FirstScreen(game));
             dispose();
         }
     }

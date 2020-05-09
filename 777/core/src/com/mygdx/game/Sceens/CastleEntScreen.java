@@ -91,13 +91,17 @@ public class CastleEntScreen implements Screen, InputProcessor {
             float x = 100 * joystickArea.getValueX();
             float y = 100 * joystickArea.getValueY();
             units[0].setVelocity(x, y);
-            units[1].setVelocity(-x, y);
-            units[2].setVelocity(-x, y);
-            units[3].setVelocity(-x, y);
-            units[4].setVelocity(-x, y);
+            units[1].setVelocity(-x+100, y);
+            units[2].setVelocity(-x+100, y);
+            units[3].setVelocity(-x+100, y);
+            units[4].setVelocity(-x+100, y);
         }
         else{
             units[0].setVelocity(0, 0);
+            units[1].setVelocity(100, 0);
+            units[2].setVelocity(100, 0);
+            units[3].setVelocity(100, 0);
+            units[4].setVelocity(100, 0);
         }
         world.step(delta, 4, 4);
 

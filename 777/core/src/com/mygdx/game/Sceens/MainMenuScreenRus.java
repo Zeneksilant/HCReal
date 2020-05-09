@@ -7,12 +7,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.game.HighCastle;
 import com.mygdx.game.Tools.Assets;
 
-public class WelcomeScreenRus implements Screen {
+public class MainMenuScreenRus implements Screen {
     final HighCastle game;
     OrthographicCamera camera;
     int tt = 0;
 
-    public WelcomeScreenRus(final HighCastle game) {
+    public MainMenuScreenRus(final HighCastle game) {
         this.game = game;
 
         camera = new OrthographicCamera();
@@ -27,14 +27,14 @@ public class WelcomeScreenRus implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.batch.draw(Assets.sprite_welcomerus, 0, 0);
+        game.batch.draw(Assets.sprite_backRus, 0, 0);
         game.batch.end();
 
         if (Gdx.input.isTouched()){
             tt++;
         }
         if(tt>5){
-            game.setScreen(new FirstScreen(game));
+            game.setScreen(new WelcomeScreenRus(game));
             dispose();
         }
     }

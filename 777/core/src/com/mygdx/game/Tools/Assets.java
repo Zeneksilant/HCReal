@@ -12,6 +12,11 @@ public class Assets {
     // фон MainMenu
     public static Texture texture_back;
     public static Sprite sprite_back;
+    public static Texture texture_backRus;
+    public static Sprite sprite_backRus;
+    public static Texture texture_backJP;
+    public static Sprite sprite_backJP;
+
     // фон первого отрывка истории
     public static Texture texture_welcome;
     public static Sprite sprite_welcome;
@@ -37,10 +42,6 @@ public class Assets {
     // враг собака
     public static Texture texture_dog1;
     public static Sprite dog1;
-    public static Texture texture_dog2;
-    public static Sprite dog2;
-    public static Texture texture_dog3;
-    public static Sprite dog3;
     // дверь
     public static Texture texture_dtuw;
     public static Sprite doortouw;
@@ -67,6 +68,10 @@ public class Assets {
         texture_back = new Texture(Gdx.files.internal("Backgrounds/MM-for-TLG.png"));
         texture_back.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         sprite_back = new Sprite(texture_back);
+        texture_backRus = new Texture(Gdx.files.internal("Backgrounds/MM-for-TLGRus.png"));
+        sprite_backRus = new Sprite(texture_backRus);
+        texture_backJP = new Texture(Gdx.files.internal("Backgrounds/MM-for-TLGJP.png"));
+        sprite_backJP = new Sprite(texture_backJP);
 
         texture_gameover = new Texture(Gdx.files.internal("Backgrounds/GameoverScreen.png"));
         sprite_gameover = new Sprite(texture_gameover);
@@ -92,10 +97,6 @@ public class Assets {
 
         texture_dog1 = new Texture(Gdx.files.internal("Enemies/Dog1.png"));
         dog1 = new Sprite(texture_dog1);
-        texture_dog2 = new Texture(Gdx.files.internal("Enemies/Dog1.png"));
-        dog2 = new Sprite(texture_dog2);
-        texture_dog3 = new Texture(Gdx.files.internal("Enemies/Dog1.png"));
-        dog3 = new Sprite(texture_dog3);
 
         texture_dtuw = new Texture(Gdx.files.internal("dtuw.png"));
         doortouw = new Sprite(texture_dtuw);

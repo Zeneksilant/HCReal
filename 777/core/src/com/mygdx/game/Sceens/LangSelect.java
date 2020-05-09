@@ -45,17 +45,17 @@ public class LangSelect implements Screen {
         }
         if(samX>392 && samX<1004 && samY>1080-396 && samY<1080-257){
             English = true;
-            game.setScreen(new WelcomeScreen(game));
+            game.setScreen(new MainMenuScreen(game));
             dispose();
         }
         if(samX>393 && samX<1005 && samY>1080-576 && samY<1080-437){
             Russian = true;
-            game.setScreen(new WelcomeScreenRus(game));
+            game.setScreen(new MainMenuScreenRus(game));
             dispose();
         }
         if(samX>393 && samX<1005 && samY>1080-756 && samY<1080-617){
             Japanese = true;
-            game.setScreen(new WelcomeScreenJP(game));
+            game.setScreen(new MainMenuScreenJP(game));
             dispose();
         }
     }

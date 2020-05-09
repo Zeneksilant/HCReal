@@ -37,7 +37,7 @@ public class MainMenuScreen implements Screen {
             tt++;
         }
         if(tt>5){
-            game.setScreen(new FirstScreen(game));
+            game.setScreen(new WelcomeScreen(game));
             dispose();
         }
     }
