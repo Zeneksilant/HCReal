@@ -26,8 +26,12 @@ import com.mygdx.game.Tools.GameManager;
 import com.mygdx.game.Tools.InputManager;
 import com.mygdx.game.Unit;
 
+import static com.mygdx.game.Sceens.Store.Blade;
+import static com.mygdx.game.Sceens.Store.Bow;
 import static com.mygdx.game.Tools.Assets.CEgate;
 import static com.mygdx.game.Tools.Assets.Samurai;
+import static com.mygdx.game.Tools.Assets.SamuraiBOW;
+import static com.mygdx.game.Tools.Assets.SamuraiEM;
 import static com.mygdx.game.Tools.Assets.doortouw;
 import static com.mygdx.game.Tools.Assets.joystickArea;
 import static com.mygdx.game.Tools.Assets.texture_sam;
@@ -66,7 +70,12 @@ public class FirstScreen implements Screen, InputProcessor {
         samX = 960 - 64;
         samY = 540 - 64;
         touch = new Vector3();
-        units[0] = new Unit(300, 300, world, Samurai);
+        if(Blade == true){
+            units[0] = new Unit(300, 300, world, SamuraiEM);
+        } else if(Bow == true){
+            units[0] = new Unit(300, 300, world, SamuraiBOW);
+        } else{
+        units[0] = new Unit(300, 300, world, Samurai);}
         units[0].applyForce(new Vector2(10000, 0));
         stage.addActor(joystickArea);
         InputMultiplexer multiplexer = new InputMultiplexer();

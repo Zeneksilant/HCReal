@@ -23,8 +23,13 @@ import com.mygdx.game.Unit;
 import static com.mygdx.game.Sceens.LangSelect.English;
 import static com.mygdx.game.Sceens.LangSelect.Japanese;
 import static com.mygdx.game.Sceens.LangSelect.Russian;
+import static com.mygdx.game.Sceens.Store.Blade;
+import static com.mygdx.game.Sceens.Store.Bow;
 import static com.mygdx.game.Sceens.Store.Potion;
+import static com.mygdx.game.Sceens.Store.vs;
 import static com.mygdx.game.Tools.Assets.Samurai;
+import static com.mygdx.game.Tools.Assets.SamuraiBOW;
+import static com.mygdx.game.Tools.Assets.SamuraiEM;
 import static com.mygdx.game.Tools.Assets.joystickArea;
 import static com.mygdx.game.Tools.Assets.texture_sam;
 import static com.mygdx.game.Tools.Assets.uverworld;
@@ -58,7 +63,12 @@ public class UverWorldScreen implements Screen, InputProcessor {
         samX = 960 - 64;
         samY = 540 - 64;
         touch = new Vector3();
-        units[0] = new Unit(960, 300, world, Samurai);
+        if(Blade == true){
+            units[0] = new Unit(300, 300, world, SamuraiEM);
+        } else if(Bow == true){
+            units[0] = new Unit(300, 300, world, SamuraiBOW);
+        } else{
+            units[0] = new Unit(300, 300, world, Samurai);}
         units[0].applyForce(new Vector2(100000, 0));
         stage.addActor(joystickArea);
         InputMultiplexer multiplexer = new InputMultiplexer();
@@ -138,15 +148,15 @@ public class UverWorldScreen implements Screen, InputProcessor {
             game.setScreen(new GameOverScreen(game));
             dispose();
         }
-        if(units[0].getpY()>700 && units[0].getpX()>400 && units[0].getpX()<1200 && English == true){
+        if(units[0].getpY()>700 && units[0].getpX()>400 && units[0].getpX()<1200 && English == true && vs==false){
             game.setScreen(new Store(game));
             dispose();
         }
-        if(units[0].getpY()>700 && units[0].getpX()>400 && units[0].getpX()<1200 && Russian == true){
+        if(units[0].getpY()>700 && units[0].getpX()>400 && units[0].getpX()<1200 && Russian == true && vs==false){
             game.setScreen(new StoreRus(game));
             dispose();
         }
-        if(units[0].getpY()>700 && units[0].getpX()>400 && units[0].getpX()<1200 && Japanese == true){
+        if(units[0].getpY()>700 && units[0].getpX()>400 && units[0].getpX()<1200 && Japanese == true && vs==false){
             game.setScreen(new StoreJP(game));
             dispose();
         }

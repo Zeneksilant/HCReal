@@ -18,6 +18,7 @@ public class Store implements Screen {
     public static boolean Potion;
     Vector3 touch;
     private int tt;
+    public static boolean vs;
 
     public Store(final HighCastle game) {
         this.game = game;
@@ -51,16 +52,20 @@ public class Store implements Screen {
         }
         if(samX>125 && samX<550 && samY>1080-920 && samY<1080-215 && tt>20){
             Blade = true;
+            vs=true;
             game.setScreen(new UverWorldScreen(game));
             dispose();
+
         }
         if(samX>645 && samX<1044 && samY>1080-925 && samY<1080-215 && tt>20){
             Bow = true;
+            vs=true;
             game.setScreen(new UverWorldScreen(game));
             dispose();
         }
         if(samX>1190 && samX<1490 && samY>1080-710 && samY<1080-215 && tt>20){
             Potion = true;
+            vs=true;
             game.setScreen(new UverWorldScreen(game));
             dispose();
         }

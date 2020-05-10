@@ -19,18 +19,30 @@ import com.mygdx.game.HighCastle;
 import com.mygdx.game.Tools.GameManager;
 import com.mygdx.game.Unit;
 
+import static com.mygdx.game.Sceens.LangSelect.English;
+import static com.mygdx.game.Sceens.LangSelect.Japanese;
+import static com.mygdx.game.Sceens.LangSelect.Russian;
+import static com.mygdx.game.Sceens.Store.Blade;
+import static com.mygdx.game.Sceens.Store.Bow;
 import static com.mygdx.game.Sceens.Store.Potion;
+import static com.mygdx.game.Tools.Assets.Arrow;
 import static com.mygdx.game.Tools.Assets.CEgate;
+import static com.mygdx.game.Tools.Assets.EmSword;
 import static com.mygdx.game.Tools.Assets.Enterance;
 import static com.mygdx.game.Tools.Assets.Grave;
 import static com.mygdx.game.Tools.Assets.Samurai;
+import static com.mygdx.game.Tools.Assets.SamuraiBOW;
+import static com.mygdx.game.Tools.Assets.SamuraiEM;
 import static com.mygdx.game.Tools.Assets.Sword;
 import static com.mygdx.game.Tools.Assets.dog1;
 import static com.mygdx.game.Tools.Assets.doortouw;
 import static com.mygdx.game.Tools.Assets.joystickArea;
+import static com.mygdx.game.Tools.Assets.sprite_story2;
+import static com.mygdx.game.Tools.Assets.texture_arrow;
 import static com.mygdx.game.Tools.Assets.texture_dog1;
 import static com.mygdx.game.Tools.Assets.texture_grave;
 import static com.mygdx.game.Tools.Assets.texture_sam;
+import static com.mygdx.game.Tools.Assets.texture_sword;
 import static com.mygdx.game.Tools.Assets.townmap;
 import static com.mygdx.game.Tools.GameManager.ActionButtonClass;
 
@@ -39,6 +51,7 @@ public class CastleEntScreen implements Screen, InputProcessor {
     SpriteBatch batch;
     Texture img = texture_sam;
     Texture dd = texture_dog1;
+
     float size = 50;
     int count = 5;
     int samX = 960 - 64;
@@ -54,6 +67,7 @@ public class CastleEntScreen implements Screen, InputProcessor {
     private int NU = 5;
     int hp = 3;
     BitmapFont font;
+    private int sa;
 
     public CastleEntScreen(HighCastle game) {
         this.game = game;
@@ -64,7 +78,12 @@ public class CastleEntScreen implements Screen, InputProcessor {
         //box2DDebugRenderer =new Box2DDebugRenderer();
         touch = new Vector3();
 
-        units[0] = new Unit(1800, 600, world, Samurai);
+        if(Blade == true){
+            units[0] = new Unit(1800, 600, world, SamuraiEM);
+        } else if(Bow == true){
+            units[0] = new Unit(1800, 600, world, SamuraiBOW);
+        } else{
+            units[0] = new Unit(1800, 600, world, Samurai);}
         units[1] = new Unit(350, 600, world, new Sprite(texture_dog1, 200, 200));
         units[2] = new Unit(300, 675, world, new Sprite(texture_dog1, 200, 200));
         units[3] = new Unit(350, 675, world, new Sprite(texture_dog1, 200, 200));
@@ -140,10 +159,30 @@ public class CastleEntScreen implements Screen, InputProcessor {
                     ((units[0].getpX() < units[1].getpX()+200) && (units[0].getpX() > units[1].getpX()-200) && (units[0].getpY() < units[1].getpY()+200) && (units[0].getpY() > units[1].getpY()-200)) |
                             ((units[0].getpX() < units[2].getpX()+200) && (units[0].getpX() > units[2].getpX()-200) && (units[0].getpY() < units[2].getpY()+200) && (units[0].getpY() > units[2].getpY()-200)) |
                             ((units[0].getpX() < units[3].getpX()+200) && (units[0].getpX() > units[3].getpX()-200) && (units[0].getpY() < units[3].getpY()+200) && (units[0].getpY() > units[3].getpY()-200)) |
-                            ((units[0].getpX() < units[4].getpX()+200) && (units[0].getpX() > units[4].getpX()-200) && (units[0].getpY() < units[4].getpY()+200) && (units[0].getpY() > units[4].getpY()-200))){
+                            ((units[0].getpX() < units[4].getpX()+200) && (units[0].getpX() > units[4].getpX()-200) && (units[0].getpY() < units[4].getpY()+200) && (units[0].getpY() > units[4].getpY()-200))
+                    && Blade == false){
                 batch.draw(Sword, units[0].getpX()-125, units[0].getpY()-50, 75, 75);
                 Sword.rotate90(true);
                 NU--;
+            }
+            if(((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y)
+                    && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height)) &&
+                    ((units[0].getpX() < units[1].getpX()+400) && (units[0].getpX() > units[1].getpX()-400) && (units[0].getpY() < units[1].getpY()+400) && (units[0].getpY() > units[1].getpY()-400)) |
+                            ((units[0].getpX() < units[2].getpX()+400) && (units[0].getpX() > units[2].getpX()-400) && (units[0].getpY() < units[2].getpY()+400) && (units[0].getpY() > units[2].getpY()-400)) |
+                            ((units[0].getpX() < units[3].getpX()+400) && (units[0].getpX() > units[3].getpX()-400) && (units[0].getpY() < units[3].getpY()+400) && (units[0].getpY() > units[3].getpY()-400)) |
+                            ((units[0].getpX() < units[4].getpX()+400) && (units[0].getpX() > units[4].getpX()-400) && (units[0].getpY() < units[4].getpY()+400) && (units[0].getpY() > units[4].getpY()-400))
+                    && Blade == true){
+                batch.draw(EmSword, units[0].getpX()-125, units[0].getpY()-50, 75, 75);
+                NU--;
+            }
+            if(((touchX >= ActionButtonClass.position.x) && touchX <= (ActionButtonClass.position.x + ActionButtonClass.width) && (touchY >= ActionButtonClass.position.y)
+                    && touchY <= (ActionButtonClass.position.y + ActionButtonClass.height)) && Bow == true){
+                sa = sa + 10000;
+            }
+            if(sa>0){
+                Unit Arrow1 = new Unit(units[0].getpX()-10, units[0].getpY()-1, world, new Sprite(texture_arrow, 75, 75));
+                Arrow1.draw(batch);
+                Arrow1.setVelocity(-200, 0);
             }
         }
         if(NU == 4){
@@ -188,8 +227,16 @@ public class CastleEntScreen implements Screen, InputProcessor {
             game.setScreen(new GameOverScreen(game));
             dispose();
         }
-        if(units[0].getpY()>980){
-            game.setScreen(new GameOverScreen(game));
+        if(units[0].getpY()>980 && English == true){
+            game.setScreen(new Story2(game));
+            dispose();
+        }
+        if(units[0].getpY()>980 && Japanese == true){
+            game.setScreen(new Story2JP(game));
+            dispose();
+        }
+        if(units[0].getpY()>980 && Russian == true){
+            game.setScreen(new Story2Rus(game));
             dispose();
         }
         if(((units[0].getpX() < units[1].getpX()+100) && (units[0].getpX() > units[1].getpX()-100) && (units[0].getpY() < units[1].getpY()+100) && (units[0].getpY() > units[1].getpY()-100)) |

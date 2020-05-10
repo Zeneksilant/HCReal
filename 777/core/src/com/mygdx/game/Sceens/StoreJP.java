@@ -47,16 +47,19 @@ public class StoreJP implements Screen {
         }
         if(samX>125 && samX<550 && samY>1080-920 && samY<1080-215&& tt>20){
             Store.Blade = true;
+            Store.vs = true;
             game.setScreen(new UverWorldScreen(game));
             dispose();
         }
         if(samX>645 && samX<1044 && samY>1080-925 && samY<1080-215&& tt>20){
             Store.Bow = true;
+            Store.vs = true;
             game.setScreen(new UverWorldScreen(game));
             dispose();
         }
         if(samX>1190 && samX<1490 && samY>1080-710 && samY<1080-215 && tt>20){
             Store.Potion = true;
+            Store.vs = true;
             game.setScreen(new UverWorldScreen(game));
             dispose();
         }

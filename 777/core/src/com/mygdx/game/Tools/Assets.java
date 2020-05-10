@@ -8,6 +8,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.mygdx.game.GameUI.JoystickArea;
 
+import static com.mygdx.game.Sceens.Store.Blade;
+import static com.mygdx.game.Sceens.Store.Bow;
+
 public class Assets {
     // фон MainMenu
     public static Texture texture_back;
@@ -30,6 +33,13 @@ public class Assets {
     public static Sprite sprite_welcomerus;
     public static Texture texture_welcomejp;
     public static Sprite sprite_welcomejp;
+    // фон второго отрыка истории
+    public static Texture texture_story2;
+    public static Sprite sprite_story2;
+    public static Texture texture_story2rus;
+    public static Sprite sprite_story2rus;
+    public static Texture texture_story2jp;
+    public static Sprite sprite_story2jp;
     //gameover фон
     public static Texture texture_gameover;
     public static Sprite sprite_gameover;
@@ -45,6 +55,10 @@ public class Assets {
     // главный герой
     public static Texture texture_sam;
     public static Sprite Samurai;
+    public static Texture texture_samEM;
+    public static Sprite SamuraiEM;
+    public static Texture texture_samBOW;
+    public static Sprite SamuraiBOW;
     // враг собака
     public static Texture texture_dog1;
     public static Sprite dog1;
@@ -56,6 +70,8 @@ public class Assets {
     //мечь
     public static Texture texture_sword;
     public static Sprite Sword;
+    public static Texture texture_Emsword;
+    public static Sprite EmSword;
     //смерть
     public static Texture texture_grave;
     public static Sprite Grave;
@@ -66,6 +82,9 @@ public class Assets {
     public static TiledMap uverworld;
     // карта входа в замок
     public static TiledMap Enterance;
+    //стрела
+    public static Texture texture_arrow;
+    public static Sprite Arrow;
     //зона вокруг джойстика
     public static JoystickArea joystickArea;
 
@@ -92,6 +111,13 @@ public class Assets {
         texture_welcomejp = new Texture(Gdx.files.internal("Backgrounds/WelcomePageJP.png"));
         sprite_welcomejp = new Sprite(texture_welcomejp);
 
+        texture_story2 = new Texture(Gdx.files.internal("Backgrounds/story2.png"));
+        sprite_story2 = new Sprite(texture_story2);
+        texture_story2rus = new Texture(Gdx.files.internal("Backgrounds/story2Rus.png"));
+        sprite_story2rus = new Sprite(texture_story2rus);
+        texture_story2jp = new Texture(Gdx.files.internal("Backgrounds/story2JP.png"));
+        sprite_story2jp = new Sprite(texture_story2jp);
+
         texture_store = new Texture(Gdx.files.internal("Backgrounds/store.png"));
         sprite_store = new Sprite(texture_store);
         texture_storeRus = new Texture(Gdx.files.internal("Backgrounds/storeRus.png"));
@@ -107,6 +133,10 @@ public class Assets {
 
         texture_sam = new Texture(Gdx.files.internal("Samurai1.png"));
         Samurai = new Sprite(texture_sam);
+        texture_samEM = new Texture(Gdx.files.internal("Samurai1EM.png"));
+        SamuraiEM = new Sprite(texture_samEM);
+        texture_samBOW = new Texture(Gdx.files.internal("Samurai1BOW.png"));
+        SamuraiBOW = new Sprite(texture_samBOW);
 
         texture_dog1 = new Texture(Gdx.files.internal("Enemies/Dog1.png"));
         dog1 = new Sprite(texture_dog1);
@@ -119,6 +149,10 @@ public class Assets {
 
         texture_sword = new Texture(Gdx.files.internal("sword.png"));
         Sword = new Sprite(texture_sword);
+        texture_Emsword = new Texture(Gdx.files.internal("EmeraldSW.png"));
+        EmSword = new Sprite(texture_Emsword);
+        texture_arrow = new Texture(Gdx.files.internal("Arrow.png"));
+        Arrow = new Sprite(texture_arrow);
 
         texture_grave = new Texture(Gdx.files.internal("dead.png"));
         Grave = new Sprite(texture_grave, 100, 100);
