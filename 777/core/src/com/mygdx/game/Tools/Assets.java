@@ -16,7 +16,13 @@ public class Assets {
     public static Sprite sprite_backRus;
     public static Texture texture_backJP;
     public static Sprite sprite_backJP;
-
+    //фон магазина
+    public static Texture texture_store;
+    public static Sprite sprite_store;
+    public static Texture texture_storeRus;
+    public static Sprite sprite_storeRus;
+    public static Texture texture_storeJP;
+    public static Sprite sprite_storeJP;
     // фон первого отрывка истории
     public static Texture texture_welcome;
     public static Sprite sprite_welcome;
@@ -85,6 +91,13 @@ public class Assets {
         sprite_welcomerus = new Sprite(texture_welcomerus);
         texture_welcomejp = new Texture(Gdx.files.internal("Backgrounds/WelcomePageJP.png"));
         sprite_welcomejp = new Sprite(texture_welcomejp);
+
+        texture_store = new Texture(Gdx.files.internal("Backgrounds/store.png"));
+        sprite_store = new Sprite(texture_store);
+        texture_storeRus = new Texture(Gdx.files.internal("Backgrounds/storeRus.png"));
+        sprite_storeRus = new Sprite(texture_storeRus);
+        texture_storeJP = new Texture(Gdx.files.internal("Backgrounds/storeJP.png"));
+        sprite_storeJP = new Sprite(texture_storeJP);
 
         texture_pausescreen = new Texture(Gdx.files.internal("Backgrounds/pausescreen.png"));
         pauseScreen = new Sprite(texture_pausescreen);

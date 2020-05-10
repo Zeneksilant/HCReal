@@ -11,6 +11,7 @@ public class MainMenuScreenJP implements Screen {
     final HighCastle game;
     OrthographicCamera camera;
     int tt = 0;
+    public static boolean firstrunJP = true;
 
     public MainMenuScreenJP(final HighCastle game) {
         this.game = game;
@@ -34,7 +35,7 @@ public class MainMenuScreenJP implements Screen {
             tt++;
         }
         if(tt>5){
-            game.setScreen(new WelcomeScreenJP(game));
+            game.setScreen(new WelcomeScreen(game));
             dispose();
         }
     }

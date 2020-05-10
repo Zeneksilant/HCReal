@@ -8,6 +8,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -19,12 +20,13 @@ import com.mygdx.game.HighCastle;
 import com.mygdx.game.Tools.GameManager;
 import com.mygdx.game.Unit;
 
-import static com.mygdx.game.Tools.Assets.CEgate;
+import static com.mygdx.game.Sceens.LangSelect.English;
+import static com.mygdx.game.Sceens.LangSelect.Japanese;
+import static com.mygdx.game.Sceens.LangSelect.Russian;
+import static com.mygdx.game.Sceens.Store.Potion;
 import static com.mygdx.game.Tools.Assets.Samurai;
-import static com.mygdx.game.Tools.Assets.doortouw;
 import static com.mygdx.game.Tools.Assets.joystickArea;
 import static com.mygdx.game.Tools.Assets.texture_sam;
-import static com.mygdx.game.Tools.Assets.townmap;
 import static com.mygdx.game.Tools.Assets.uverworld;
 
 public class UverWorldScreen implements Screen, InputProcessor {
@@ -43,6 +45,8 @@ public class UverWorldScreen implements Screen, InputProcessor {
     private OrthogonalTiledMapRenderer renderer;
     private Stage stage = new Stage();
     private float w,h;
+    BitmapFont font;
+    int hp = 3;
 
     public UverWorldScreen(HighCastle game) {
         this.game = game;
@@ -64,6 +68,7 @@ public class UverWorldScreen implements Screen, InputProcessor {
         w = Gdx.graphics.getWidth();
         h = Gdx.graphics.getWidth();
         GameManager.initialize(w, h);
+        font = new BitmapFont();
     }
 
     @Override
@@ -93,6 +98,7 @@ public class UverWorldScreen implements Screen, InputProcessor {
 
         batch.begin();
 
+        font.draw(batch, "HP: "+hp, 100, 1050);
         GameManager.renderGame(batch);
         //batch.draw(img, 20, 20, size * UNIT_SCALE, size * UNIT_SCALE);
         for (int i = 0; i < count; i++) {
@@ -128,9 +134,24 @@ public class UverWorldScreen implements Screen, InputProcessor {
             game.setScreen(new FirstScreen(game));
             dispose();
         }
-        if(units[0].getpY()>980){
+        if(units[0].getpY()>1070){
             game.setScreen(new GameOverScreen(game));
             dispose();
+        }
+        if(units[0].getpY()>700 && units[0].getpX()>400 && units[0].getpX()<1200 && English == true){
+            game.setScreen(new Store(game));
+            dispose();
+        }
+        if(units[0].getpY()>700 && units[0].getpX()>400 && units[0].getpX()<1200 && Russian == true){
+            game.setScreen(new StoreRus(game));
+            dispose();
+        }
+        if(units[0].getpY()>700 && units[0].getpX()>400 && units[0].getpX()<1200 && Japanese == true){
+            game.setScreen(new StoreJP(game));
+            dispose();
+        }
+        if(Potion == true){
+            hp = 5;
         }
     }
 

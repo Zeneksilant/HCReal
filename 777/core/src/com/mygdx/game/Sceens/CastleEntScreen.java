@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -18,6 +19,7 @@ import com.mygdx.game.HighCastle;
 import com.mygdx.game.Tools.GameManager;
 import com.mygdx.game.Unit;
 
+import static com.mygdx.game.Sceens.Store.Potion;
 import static com.mygdx.game.Tools.Assets.CEgate;
 import static com.mygdx.game.Tools.Assets.Enterance;
 import static com.mygdx.game.Tools.Assets.Grave;
@@ -50,6 +52,8 @@ public class CastleEntScreen implements Screen, InputProcessor {
     private Stage stage = new Stage();
     private float w,h;
     private int NU = 5;
+    int hp = 3;
+    BitmapFont font;
 
     public CastleEntScreen(HighCastle game) {
         this.game = game;
@@ -75,6 +79,10 @@ public class CastleEntScreen implements Screen, InputProcessor {
         w = Gdx.graphics.getWidth();
         h = Gdx.graphics.getWidth();
         GameManager.initialize(w, h);
+        font = new BitmapFont();
+        if(Potion==true){
+            hp=5;
+        }
     }
 
     @Override
@@ -114,7 +122,7 @@ public class CastleEntScreen implements Screen, InputProcessor {
         batch.begin();
 
         GameManager.renderGame(batch);
-
+        font.draw(batch, "HP:"+hp, 100, 1050);
         //batch.draw(img, 20, 20, size * UNIT_SCALE, size * UNIT_SCALE);
         for (int i = 0; i < count; i++) {
             units[i].draw(batch);
@@ -188,8 +196,23 @@ public class CastleEntScreen implements Screen, InputProcessor {
                 ((units[0].getpX() < units[2].getpX()+100) && (units[0].getpX() > units[2].getpX()-100) && (units[0].getpY() < units[2].getpY()+100) && (units[0].getpY() > units[2].getpY()-100)) |
                 ((units[0].getpX() < units[3].getpX()+100) && (units[0].getpX() > units[3].getpX()-100) && (units[0].getpY() < units[3].getpY()+100) && (units[0].getpY() > units[3].getpY()-100)) |
                 ((units[0].getpX() < units[4].getpX()+100) && (units[0].getpX() > units[4].getpX()-100) && (units[0].getpY() < units[4].getpY()+100) && (units[0].getpY() > units[4].getpY()-100))){
+            hp--;
+        }
+        if(hp==0){
             game.setScreen(new GameOverScreen(game));
             dispose();
+        }
+        if(units[0].getpX()+200<units[1].getpX()){
+            units[1].setVelocity(-100, 0);
+        }
+        if(units[0].getpX()+200<units[2].getpX()){
+            units[2].setVelocity(-100, 0);
+        }
+        if(units[0].getpX()+200<units[3].getpX()){
+            units[3].setVelocity(-100, 0);
+        }
+        if(units[0].getpX()+200<units[4].getpX()){
+            units[4].setVelocity(-100, 0);
         }
     }
 

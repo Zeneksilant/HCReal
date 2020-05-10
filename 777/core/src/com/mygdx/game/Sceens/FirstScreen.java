@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -51,6 +52,8 @@ public class FirstScreen implements Screen, InputProcessor {
     private OrthogonalTiledMapRenderer renderer;
     private Stage stage = new Stage();
     private float w,h;
+    public int hp = 3;
+    BitmapFont font;
 
     public FirstScreen(HighCastle game) {
 
@@ -73,6 +76,7 @@ public class FirstScreen implements Screen, InputProcessor {
         w = Gdx.graphics.getWidth();
         h = Gdx.graphics.getWidth();
         GameManager.initialize(w, h);
+        font = new BitmapFont();
     }
 
     @Override
@@ -104,6 +108,7 @@ public class FirstScreen implements Screen, InputProcessor {
 
         batch.begin();
 
+        font.draw(batch, "HP:"+hp, 100, 1050);
         GameManager.renderGame(batch);
         //batch.draw(img, 20, 20, size * UNIT_SCALE, size * UNIT_SCALE);
         for (int i = 0; i < count; i++) {

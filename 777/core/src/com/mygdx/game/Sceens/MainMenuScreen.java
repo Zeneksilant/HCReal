@@ -12,6 +12,7 @@ public class MainMenuScreen implements Screen {
     final HighCastle game;
     OrthographicCamera camera;
     int tt = 0;
+    public boolean firstrun = true;
 
     public MainMenuScreen(final HighCastle game) {
         this.game = game;
