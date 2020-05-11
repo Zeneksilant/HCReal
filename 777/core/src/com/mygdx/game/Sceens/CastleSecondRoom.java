@@ -27,21 +27,20 @@ import static com.mygdx.game.Sceens.Store.Bow;
 import static com.mygdx.game.Sceens.Store.Potion;
 import static com.mygdx.game.Tools.Assets.Draugr;
 import static com.mygdx.game.Tools.Assets.EmSword;
-import static com.mygdx.game.Tools.Assets.Enterance;
 import static com.mygdx.game.Tools.Assets.FirstRoom;
 import static com.mygdx.game.Tools.Assets.Samurai;
 import static com.mygdx.game.Tools.Assets.SamuraiBOW;
 import static com.mygdx.game.Tools.Assets.SamuraiEM;
 import static com.mygdx.game.Tools.Assets.Sword;
+import static com.mygdx.game.Tools.Assets.Wizard;
 import static com.mygdx.game.Tools.Assets.joystickArea;
 import static com.mygdx.game.Tools.Assets.texture_arrow;
 import static com.mygdx.game.Tools.Assets.texture_dog1;
-import static com.mygdx.game.Tools.Assets.texture_draugr;
 import static com.mygdx.game.Tools.Assets.texture_grave;
 import static com.mygdx.game.Tools.Assets.texture_sam;
 import static com.mygdx.game.Tools.GameManager.ActionButtonClass;
 
-public class CastleFirstRoom implements Screen, InputProcessor {
+public class CastleSecondRoom implements Screen, InputProcessor {
     HighCastle game;
     SpriteBatch batch;
     Texture img = texture_sam;
@@ -64,7 +63,7 @@ public class CastleFirstRoom implements Screen, InputProcessor {
     BitmapFont font;
     private int sa;
 
-    public CastleFirstRoom(HighCastle game) {
+    public CastleSecondRoom(HighCastle game) {
         this.game = game;
         batch = new SpriteBatch();
         renderer = new OrthogonalTiledMapRenderer(FirstRoom);
@@ -79,10 +78,10 @@ public class CastleFirstRoom implements Screen, InputProcessor {
             units[0] = new Unit(960, 250, world, SamuraiBOW);
         } else{
             units[0] = new Unit(960, 250, world, Samurai);}
-        units[1] = new Unit(1200, 900, world, Draugr);
-        units[2] = new Unit(1000, 800, world, Draugr);
-        units[3] = new Unit(900, 850, world, Draugr);
-        units[4] = new Unit(700, 900, world, Draugr);
+        units[1] = new Unit(1200, 900, world, Wizard);
+        units[2] = new Unit(1000, 800, world, Wizard);
+        units[3] = new Unit(900, 850, world, Wizard);
+        units[4] = new Unit(700, 900, world, Wizard);
         units[0].applyForce(new Vector2(100000, 0));
 
         stage.addActor(joystickArea);
@@ -114,8 +113,8 @@ public class CastleFirstRoom implements Screen, InputProcessor {
             float y = 100 * joystickArea.getValueY();
             units[0].setVelocity(x, y);
             units[1].setVelocity(x, -y-50);
-            units[2].setVelocity(x, -y-50);
-            units[3].setVelocity(x, -y-50);
+            units[2].setVelocity(x, -y-30);
+            units[3].setVelocity(x, -y-20);
             units[4].setVelocity(x, -y-50);
         }
         else{
@@ -223,15 +222,15 @@ public class CastleFirstRoom implements Screen, InputProcessor {
             dispose();
         }
         if(units[0].getpY()>980 && English == true){
-            game.setScreen(new Story3(game));
+            game.setScreen(new Story4(game));
             dispose();
         }
         if(units[0].getpY()>980 && Japanese == true){
-            game.setScreen(new Story3JP(game));
+            game.setScreen(new Story4JP(game));
             dispose();
         }
         if(units[0].getpY()>980 && Russian == true){
-            game.setScreen(new Story3Rus(game));
+            game.setScreen(new Story4Rus(game));
             dispose();
         }
         if(((units[0].getpX() < units[1].getpX()+100) && (units[0].getpX() > units[1].getpX()-100) && (units[0].getpY() < units[1].getpY()+100) && (units[0].getpY() > units[1].getpY()-100)) |
