@@ -25,28 +25,23 @@ import static com.mygdx.game.Sceens.LangSelect.Russian;
 import static com.mygdx.game.Sceens.Store.Blade;
 import static com.mygdx.game.Sceens.Store.Bow;
 import static com.mygdx.game.Sceens.Store.Potion;
-import static com.mygdx.game.Tools.Assets.Arrow;
-import static com.mygdx.game.Tools.Assets.CEgate;
+import static com.mygdx.game.Tools.Assets.Draugr;
 import static com.mygdx.game.Tools.Assets.EmSword;
 import static com.mygdx.game.Tools.Assets.Enterance;
-import static com.mygdx.game.Tools.Assets.Grave;
+import static com.mygdx.game.Tools.Assets.FirstRoom;
 import static com.mygdx.game.Tools.Assets.Samurai;
 import static com.mygdx.game.Tools.Assets.SamuraiBOW;
 import static com.mygdx.game.Tools.Assets.SamuraiEM;
 import static com.mygdx.game.Tools.Assets.Sword;
-import static com.mygdx.game.Tools.Assets.dog1;
-import static com.mygdx.game.Tools.Assets.doortouw;
 import static com.mygdx.game.Tools.Assets.joystickArea;
-import static com.mygdx.game.Tools.Assets.sprite_story2;
 import static com.mygdx.game.Tools.Assets.texture_arrow;
 import static com.mygdx.game.Tools.Assets.texture_dog1;
+import static com.mygdx.game.Tools.Assets.texture_draugr;
 import static com.mygdx.game.Tools.Assets.texture_grave;
 import static com.mygdx.game.Tools.Assets.texture_sam;
-import static com.mygdx.game.Tools.Assets.texture_sword;
-import static com.mygdx.game.Tools.Assets.townmap;
 import static com.mygdx.game.Tools.GameManager.ActionButtonClass;
 
-public class CastleEntScreen implements Screen, InputProcessor {
+public class CastleFirstRoom implements Screen, InputProcessor {
     HighCastle game;
     SpriteBatch batch;
     Texture img = texture_sam;
@@ -64,30 +59,30 @@ public class CastleEntScreen implements Screen, InputProcessor {
     private OrthogonalTiledMapRenderer renderer;
     private Stage stage = new Stage();
     private float w,h;
-    private int NU = 5;
+    private int NU = 10;
     int hp = 3;
     BitmapFont font;
     private int sa;
 
-    public CastleEntScreen(HighCastle game) {
+    public CastleFirstRoom(HighCastle game) {
         this.game = game;
         batch = new SpriteBatch();
-        renderer = new OrthogonalTiledMapRenderer(Enterance);
+        renderer = new OrthogonalTiledMapRenderer(FirstRoom);
         camera.setToOrtho(false, 1920, 1080);
         world = new World(new Vector2(), false);
         //box2DDebugRenderer =new Box2DDebugRenderer();
         touch = new Vector3();
 
         if(Blade == true){
-            units[0] = new Unit(1800, 600, world, SamuraiEM);
+            units[0] = new Unit(960, 250, world, SamuraiEM);
         } else if(Bow == true){
-            units[0] = new Unit(1800, 600, world, SamuraiBOW);
+            units[0] = new Unit(960, 250, world, SamuraiBOW);
         } else{
-            units[0] = new Unit(1800, 600, world, Samurai);}
-        units[1] = new Unit(350, 600, world, new Sprite(texture_dog1, 200, 200));
-        units[2] = new Unit(300, 675, world, new Sprite(texture_dog1, 200, 200));
-        units[3] = new Unit(350, 675, world, new Sprite(texture_dog1, 200, 200));
-        units[4] = new Unit(500, 450, world, new Sprite(texture_dog1, 200, 200));
+            units[0] = new Unit(960, 250, world, Samurai);}
+        units[1] = new Unit(1200, 900, world, Draugr);
+        units[2] = new Unit(1000, 800, world, Draugr);
+        units[3] = new Unit(900, 850, world, Draugr);
+        units[4] = new Unit(700, 900, world, Draugr);
         units[0].applyForce(new Vector2(100000, 0));
 
         stage.addActor(joystickArea);
@@ -118,17 +113,17 @@ public class CastleEntScreen implements Screen, InputProcessor {
             float x = 100 * joystickArea.getValueX();
             float y = 100 * joystickArea.getValueY();
             units[0].setVelocity(x, y);
-            units[1].setVelocity(-x+100, y);
-            units[2].setVelocity(-x+100, y);
-            units[3].setVelocity(-x+100, y);
-            units[4].setVelocity(-x+100, y);
+            units[1].setVelocity(x, -y-50);
+            units[2].setVelocity(x, -y-50);
+            units[3].setVelocity(x, -y-50);
+            units[4].setVelocity(x, -y-50);
         }
         else{
             units[0].setVelocity(0, 0);
-            units[1].setVelocity(100, 0);
-            units[2].setVelocity(100, 0);
-            units[3].setVelocity(100, 0);
-            units[4].setVelocity(100, 0);
+            units[1].setVelocity(0, -50);
+            units[2].setVelocity(0, -50);
+            units[3].setVelocity(0, -50);
+            units[4].setVelocity(0, -50);
         }
         world.step(delta, 4, 4);
 
@@ -211,32 +206,32 @@ public class CastleEntScreen implements Screen, InputProcessor {
             samX = (int)touch.x;
             samY = (int)touch.y;
         }
-        if(samX > 1900){
-            game.setScreen(new FirstScreen(game));
+        /*if(samX > 1900){
+            game.setScreen(new CastleSecondRoom(game));
             dispose();
-        }
+        }*/
         if(units[0].getpX()<100){
             game.setScreen(new GameOverScreen(game));
             dispose();
         }
         if(units[0].getpX()>1820){
-            game.setScreen(new FirstScreen(game));
-            dispose();
-        }
-        if(units[0].getpY()<100){
             game.setScreen(new GameOverScreen(game));
             dispose();
         }
+        if(units[0].getpY()<100){
+            game.setScreen(new CastleEntScreen(game));
+            dispose();
+        }
         if(units[0].getpY()>980 && English == true){
-            game.setScreen(new Story2(game));
+            game.setScreen(new Story3(game));
             dispose();
         }
         if(units[0].getpY()>980 && Japanese == true){
-            game.setScreen(new Story2JP(game));
+            game.setScreen(new Story3JP(game));
             dispose();
         }
         if(units[0].getpY()>980 && Russian == true){
-            game.setScreen(new Story2Rus(game));
+            game.setScreen(new Story3Rus(game));
             dispose();
         }
         if(((units[0].getpX() < units[1].getpX()+100) && (units[0].getpX() > units[1].getpX()-100) && (units[0].getpY() < units[1].getpY()+100) && (units[0].getpY() > units[1].getpY()-100)) |

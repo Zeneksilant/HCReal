@@ -34,7 +34,7 @@ public class Story2 implements Screen {
             tt++;
         }
         if(tt>20){
-            game.setScreen(new FirstScreen(game));
+            game.setScreen(new CastleFirstRoom(game));
             dispose();
         }
     }

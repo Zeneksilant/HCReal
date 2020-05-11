@@ -35,7 +35,7 @@ public class MainMenuScreenJP implements Screen {
             tt++;
         }
         if(tt>5){
-            game.setScreen(new WelcomeScreen(game));
+            game.setScreen(new WelcomeScreenJP(game));
             dispose();
         }
     }
