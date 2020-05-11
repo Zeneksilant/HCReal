@@ -87,6 +87,9 @@ public class Assets {
     public static Sprite doortouw;
     public static Texture texture_CEgate;
     public static Sprite CEgate;
+    //шар мага
+    public static Texture texture_lghtball;
+    public static Sprite Lghtball;
     //мечь
     public static Texture texture_sword;
     public static Sprite Sword;
@@ -165,6 +168,9 @@ public class Assets {
 
         texture_pausescreen = new Texture(Gdx.files.internal("Backgrounds/pausescreen.png"));
         pauseScreen = new Sprite(texture_pausescreen);
+
+        texture_lghtball = new Texture(Gdx.files.internal("Lghtball.png"));
+        Lghtball = new Sprite(texture_lghtball);
 
         texture_pausebutton = new Texture(Gdx.files.internal("Buttons/PauseIcon.png"));
         pausebutton = new Sprite(texture_pausebutton);

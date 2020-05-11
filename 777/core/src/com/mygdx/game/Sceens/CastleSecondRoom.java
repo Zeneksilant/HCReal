@@ -28,6 +28,7 @@ import static com.mygdx.game.Sceens.Store.Potion;
 import static com.mygdx.game.Tools.Assets.Draugr;
 import static com.mygdx.game.Tools.Assets.EmSword;
 import static com.mygdx.game.Tools.Assets.FirstRoom;
+import static com.mygdx.game.Tools.Assets.Lghtball;
 import static com.mygdx.game.Tools.Assets.Samurai;
 import static com.mygdx.game.Tools.Assets.SamuraiBOW;
 import static com.mygdx.game.Tools.Assets.SamuraiEM;
@@ -47,7 +48,7 @@ public class CastleSecondRoom implements Screen, InputProcessor {
     Texture dd = texture_dog1;
 
     float size = 50;
-    int count = 5;
+    int count = 8;
     int samX = 960 - 64;
     int samY = 540 - 64;
     Vector3 touch;
@@ -82,6 +83,9 @@ public class CastleSecondRoom implements Screen, InputProcessor {
         units[2] = new Unit(1000, 800, world, Wizard);
         units[3] = new Unit(900, 850, world, Wizard);
         units[4] = new Unit(700, 900, world, Wizard);
+        units[5] = new Unit(1200, 900, world, Lghtball);
+        units[6] = new Unit(1000, 800, world, Lghtball);
+        units[7] = new Unit(900, 700, world, Lghtball);
         units[0].applyForce(new Vector2(100000, 0));
 
         stage.addActor(joystickArea);
@@ -116,6 +120,9 @@ public class CastleSecondRoom implements Screen, InputProcessor {
             units[2].setVelocity(x, -y-30);
             units[3].setVelocity(x, -y-20);
             units[4].setVelocity(x, -y-50);
+            units[5].setVelocity(0, -300);
+            units[6].setVelocity(0, -300);
+            units[7].setVelocity(0, -300);
         }
         else{
             units[0].setVelocity(0, 0);
@@ -123,6 +130,9 @@ public class CastleSecondRoom implements Screen, InputProcessor {
             units[2].setVelocity(0, -50);
             units[3].setVelocity(0, -50);
             units[4].setVelocity(0, -50);
+            units[5].setVelocity(0, -300);
+            units[6].setVelocity(0, -300);
+            units[7].setVelocity(0, -300);
         }
         world.step(delta, 4, 4);
 
@@ -218,7 +228,7 @@ public class CastleSecondRoom implements Screen, InputProcessor {
             dispose();
         }
         if(units[0].getpY()<100){
-            game.setScreen(new CastleEntScreen(game));
+            game.setScreen(new CastleFirstRoom(game));
             dispose();
         }
         if(units[0].getpY()>980 && English == true){
@@ -238,6 +248,12 @@ public class CastleSecondRoom implements Screen, InputProcessor {
                 ((units[0].getpX() < units[3].getpX()+100) && (units[0].getpX() > units[3].getpX()-100) && (units[0].getpY() < units[3].getpY()+100) && (units[0].getpY() > units[3].getpY()-100)) |
                 ((units[0].getpX() < units[4].getpX()+100) && (units[0].getpX() > units[4].getpX()-100) && (units[0].getpY() < units[4].getpY()+100) && (units[0].getpY() > units[4].getpY()-100))){
             hp--;
+        }
+        if(((units[0].getpX() < units[5].getpX()+100) && (units[0].getpX() > units[5].getpX()-100) && (units[0].getpY() < units[5].getpY()+100) && (units[0].getpY() > units[5].getpY()-100)) |
+                ((units[0].getpX() < units[6].getpX()+100) && (units[0].getpX() > units[6].getpX()-100) && (units[0].getpY() < units[6].getpY()+100) && (units[0].getpY() > units[6].getpY()-100)) |
+                ((units[0].getpX() < units[7].getpX()+50) && (units[0].getpX() > units[7].getpX()-50) && (units[0].getpY() < units[7].getpY()+50) && (units[0].getpY() > units[7].getpY()-50))){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
         }
         if(hp==0){
             game.setScreen(new GameOverScreen(game));
