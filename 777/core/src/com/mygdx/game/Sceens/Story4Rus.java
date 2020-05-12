@@ -34,7 +34,7 @@ public class Story4Rus implements Screen {
             tt++;
         }
         if(tt>20){
-            game.setScreen(new CastleSecondRoom(game));
+            game.setScreen(new CastleThirdRoom(game));
             dispose();
         }
     }

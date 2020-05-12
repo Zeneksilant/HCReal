@@ -54,6 +54,13 @@ public class Assets {
     public static Sprite sprite_story4rus;
     public static Texture texture_story4jp;
     public static Sprite sprite_story4jp;
+    // фон пятого отрыка истории
+    public static Texture texture_story5;
+    public static Sprite sprite_story5;
+    public static Texture texture_story5rus;
+    public static Sprite sprite_story5rus;
+    public static Texture texture_story5jp;
+    public static Sprite sprite_story5jp;
     //gameover фон
     public static Texture texture_gameover;
     public static Sprite sprite_gameover;
@@ -82,6 +89,9 @@ public class Assets {
     //враг маг
     public static Texture texture_wizard;
     public static Sprite Wizard;
+    //враг рыарь
+    public static Texture texture_knight;
+    public static Sprite Knight;
     // дверь
     public static Texture texture_dtuw;
     public static Sprite doortouw;
@@ -109,6 +119,8 @@ public class Assets {
     public static TiledMap FirstRoom;
     //карта второй комнаты замка
     public static TiledMap SecondRoom;
+    //карта третей комнаты замка
+    public static TiledMap ThirdRoom;
     //стрела
     public static Texture texture_arrow;
     public static Sprite Arrow;
@@ -159,6 +171,13 @@ public class Assets {
         texture_story4jp = new Texture(Gdx.files.internal("Backgrounds/Story4JP.png"));
         sprite_story4jp = new Sprite(texture_story4jp);
 
+        texture_story5 = new Texture(Gdx.files.internal("Backgrounds/Story5.png"));
+        sprite_story5 = new Sprite(texture_story5);
+        texture_story5rus = new Texture(Gdx.files.internal("Backgrounds/Story5Rus.png"));
+        sprite_story5rus = new Sprite(texture_story5rus);
+        texture_story5jp = new Texture(Gdx.files.internal("Backgrounds/Story5JP.png"));
+        sprite_story5jp = new Sprite(texture_story5jp);
+
         texture_store = new Texture(Gdx.files.internal("Backgrounds/store.png"));
         sprite_store = new Sprite(texture_store);
         texture_storeRus = new Texture(Gdx.files.internal("Backgrounds/storeRus.png"));
@@ -182,12 +201,15 @@ public class Assets {
         texture_samBOW = new Texture(Gdx.files.internal("Samurai1BOW.png"));
         SamuraiBOW = new Sprite(texture_samBOW);
 
+
         texture_dog1 = new Texture(Gdx.files.internal("Enemies/Dog1.png"));
         dog1 = new Sprite(texture_dog1);
         texture_draugr = new Texture(Gdx.files.internal("Enemies/Dwarv.png"));
         Draugr = new Sprite(texture_draugr);
         texture_wizard = new Texture(Gdx.files.internal("Enemies/Wizard.png"));
         Wizard = new Sprite(texture_wizard);
+        texture_knight = new Texture(Gdx.files.internal("Enemies/Knight.png"));
+        Knight = new Sprite(texture_knight);
 
         texture_dtuw = new Texture(Gdx.files.internal("dtuw.png"));
         doortouw = new Sprite(texture_dtuw);
@@ -215,5 +237,6 @@ public class Assets {
         Enterance = mapLoader.load("Maps/CastleEntry.tmx");
         FirstRoom = mapLoader.load("Maps/map1.tmx");
         SecondRoom = mapLoader.load("Maps/map2.tmx");
+        ThirdRoom = mapLoader.load("Maps/map3.tmx");
     }
 }
